@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGround = true;
-            jumpCount = 1;
+            jumpCount = 1;  
         }
     }
 }
