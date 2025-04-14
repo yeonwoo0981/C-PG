@@ -44,6 +44,5 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(DashTime);
         rb.linearVelocity = Vector2.zero;
         isCanUseDash = true;
-        //신연우 수비 제발 내리자
     }
 }
