@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
+    //
     public int hp = 100;
     public int damage = 5;
 
