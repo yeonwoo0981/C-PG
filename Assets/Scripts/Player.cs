@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     public bool isGround;
     public int jumpCount = 1;
     private Animator animator;
-    private PlayerStat statscript;
+    public int hp = 100;
+    public int damage = 5;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,8 +37,6 @@ public class Player : MonoBehaviour
         if(moveDir.x != 0)
         {
             animator.SetBool("isRunning", true);
-            //statscript.stm (0.5f *Time.deltaTime);
-            //Console.WriteLine(statscript);
         }
         else
         {
