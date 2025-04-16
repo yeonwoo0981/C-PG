@@ -21,4 +21,6 @@ public class EnemyMove : MonoBehaviour
     {
         rigid.linearVelocity = vec.normalized * speed;
     }
+
+
 }
