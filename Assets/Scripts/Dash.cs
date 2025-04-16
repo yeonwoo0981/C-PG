@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Dash : MonoBehaviour
@@ -10,6 +11,7 @@ public class Dash : MonoBehaviour
     private bool isCanUseDash = true;
     public float DashcoolTime = 1.5f;
     private float currentTime;
+    public float y = 0.1f;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,7 +29,7 @@ public class Dash : MonoBehaviour
             else if (DashcoolTime < currentTime)
             {
                 isCanUseDash = false;
-                rb.linearVelocity = new Vector2(dashdir, 0) * power;
+                rb.linearVelocity = new Vector2(dashdir,y) * power;
                 StartCoroutine(EndVelocity());
                 currentTime = 0;
             }

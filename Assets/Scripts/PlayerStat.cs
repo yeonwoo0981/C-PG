@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    private int hp = 100;
-    private int stm = 100; //애들아 이거 스태미나다.
-    private int damage = 5;
+    public int hp = 100;
+    public int damage = 5;
 
+    private void Update()
+    {
         
+    }
+    public void stm(float value)
+    {
+        value = 100;
+    }
 }
