@@ -15,45 +15,48 @@ public class Dash : MonoBehaviour
     public float DashcoolTime = 1.5f;
     private float currentTime = 0;
     public float y = 0.1f;
-    public float stm = 100;
+    public float stm = 100f;
     public float c_TimeMax = 10f;
     public float maxStm = 100f;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Start()
+    {
+        stm = maxStm;
+    }
     private void Update()
     {
         currentTime += Time.deltaTime;
-        currentTime = Mathf.Clamp(currentTime, 0f, c_TimeMax); // 여기서 클램프 적용
-
+        currentTime = Mathf.Clamp(currentTime, 0f, c_TimeMax);
         if (Keyboard.current.shiftKey.wasPressedThisFrame && isCanUseDash)
         {
-            if (DashcoolTime > currentTime)
+            if (stm <= 0)
             {
-                Debug.Log("기다리기");
-                return;
+                power = 0;
             }
-            else if (DashcoolTime < currentTime)
+            else
             {
-                isCanUseDash = false;
-                rb.linearVelocity = new Vector2(dashdir, y) * power;
-                StartCoroutine(EndVelocity());
-                currentTime = 0;
+                if (DashcoolTime > currentTime)
+                {
+                    Debug.Log("기다리기");
+                    return;
+                }
+                else if (DashcoolTime < currentTime)
+                {
+                    isCanUseDash = false;
+                    rb.linearVelocity = new Vector2(dashdir, y) * power;
+                    StartCoroutine(EndVelocity());
+                    currentTime = 0;
+                }
             }
         }
+
         stm_gaugePlus();
 
-        if (stm <= 0)
-        {
-            power = 0;
-        }
-        else
-        {
-            power = 12;
-        }
+        
     }
-
     public void OnMove(InputValue value)
     {
         dashdir = value.Get<Vector2>().x;
@@ -68,45 +71,14 @@ public class Dash : MonoBehaviour
     }
     public void stm_gaugeMin()
     {
-        stm -= 20f; // 고정으로 20 감소
-        stm = Mathf.Clamp(stm, -20, maxStm); // 최소 0까지 제한
+        stm -= 20f;
+        stm = Mathf.Clamp(stm, -20, maxStm);
         Debug.Log("Stamina: " + stm);
     }
     public void stm_gaugePlus()
     {
-        stm += 4* Time.deltaTime; // currentTime 대신 Time.deltaTime 사용
-        stm = Mathf.Clamp(stm, -20, maxStm);
         Debug.Log(stm);
+        stm += 4* Time.deltaTime;
+        stm = Mathf.Clamp(stm, -20, maxStm);
     }
 }
-/*private void Update()
-{
-    currentTime += Time.deltaTime;
-    currentTime = Mathf.Clamp(currentTime, 0f, c_TimeMax); // 여기서 클램프 적용
-
-    if (currentTime >= c_TimeMax)
-    {
-        if (Keyboard.current.shiftKey.wasPressedThisFrame && isCanUseDash)
-        {
-            if (DashcoolTime > currentTime)
-            {
-                Debug.Log("기다리기");
-                return;
-            }
-            else if (DashcoolTime < currentTime)
-            {
-                isCanUseDash = false;
-                rb.linearVelocity = new Vector2(dashdir, y) * power;
-                StartCoroutine(EndVelocity());
-                currentTime = 0;
-            }
-        }
-    }
-
-    stm_gaugePlus();
-
-    if (stm <= 0)
-    {
-        power = 0;
-    }
-}*/
