@@ -72,13 +72,13 @@ public class Dash : MonoBehaviour
     public void stm_gaugeMin()
     {
         stm -= 20f;
-        stm = Mathf.Clamp(stm, -20, maxStm);
+        stm = Mathf.Clamp(stm, 20, maxStm);
         Debug.Log("Stamina: " + stm);
     }
     public void stm_gaugePlus()
     {
         Debug.Log(stm);
         stm += 4* Time.deltaTime;
-        stm = Mathf.Clamp(stm, -20, maxStm);
+        stm = Mathf.Clamp(stm, 20, maxStm);
     }
 }
