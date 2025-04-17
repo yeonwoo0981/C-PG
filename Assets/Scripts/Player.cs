@@ -2,13 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 3f;
     private Vector2 moveDir;
-    private Rigidbody2D rb;
+    [SerializeField]private Rigidbody2D rb;
     public bool isGround;
     public int jumpCount = 1;
     private Animator animator;
@@ -24,23 +25,26 @@ public class Player : MonoBehaviour
     private void Update()
     {
         transform.position += (Vector3)moveDir * speed * Time.deltaTime;
+        
     }
 
     public void OnMove(InputValue value)
     {
         moveDir = value.Get<Vector2>();
-        PlayerAnimator();
+        Player_Ani_tra();
     }
 
-    public void PlayerAnimator()
+    public void Player_Ani_tra()
     {
-        if(moveDir.x != 0)
+        if (moveDir.x > 0)
         {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             animator.SetBool("isRunning", true);
         }
-        else
+        else if (moveDir.x < 0)
         {
-            animator.SetBool("isRunning", false);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            animator.SetBool("isRunning", true);
         }
     }
 
@@ -62,6 +66,23 @@ public class Player : MonoBehaviour
             isGround = true;
             jumpCount = 1;
             animator.SetBool("isJumping", false);
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            health();
+        }
+    }
+
+    public void health()
+    {
+
+        if (hp == 0)
+        {
+            Debug.Log("ÁïÀ½");
+        }
+        else
+        {
+            hp = hp - 10;
         }
     }
 }
