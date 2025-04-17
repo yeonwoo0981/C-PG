@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 806610470}
   - component: {fileID: 806610469}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 830373388}
   - component: {fileID: 830373387}
   - component: {fileID: 830373386}
+  - component: {fileID: 830373393}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -727,6 +728,10 @@ MonoBehaviour:
   power: 12
   DashTime: 0.4
   DashcoolTime: 1.5
+  y: 0.1
+  stm: 100
+  c_TimeMax: 10
+  maxStm: 100
 --- !u!114 &830373387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +748,8 @@ MonoBehaviour:
   jumpForce: 8.5
   isGround: 0
   jumpCount: 1
+  hp: 100
+  damage: 5
 --- !u!114 &830373388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,6 +924,28 @@ Transform:
   - {fileID: 1697578650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &830373393
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830373385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1909fc1b6b948143a6a7de3067e71e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &834767526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,7 +1158,7 @@ GameObject:
   - component: {fileID: 1361850457}
   - component: {fileID: 1361850456}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Bridge
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
