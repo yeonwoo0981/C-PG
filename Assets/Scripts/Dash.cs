@@ -27,24 +27,21 @@ public class Dash : MonoBehaviour
         currentTime += Time.deltaTime;
         currentTime = Mathf.Clamp(currentTime, 0f, c_TimeMax); // 여기서 클램프 적용
 
-        if (stm>=0)
+        if (Keyboard.current.shiftKey.wasPressedThisFrame && isCanUseDash)
         {
-            if (Keyboard.current.shiftKey.wasPressedThisFrame && isCanUseDash)
+            if (DashcoolTime > currentTime)
             {
-                if (DashcoolTime > currentTime)
-                {
-                    Debug.Log("기다리기");
-                    return;
-                }
-                else if (DashcoolTime < currentTime)
-                {
-                    isCanUseDash = false;
-                    rb.linearVelocity = new Vector2(dashdir, y) * power;
-                    StartCoroutine(EndVelocity());
-                    currentTime = 0;
-                }
+                Debug.Log("기다리기");
+                return;
             }
-        }    
+            else if (DashcoolTime < currentTime)
+            {
+                isCanUseDash = false;
+                rb.linearVelocity = new Vector2(dashdir, y) * power;
+                StartCoroutine(EndVelocity());
+                currentTime = 0;
+            }
+        }
         stm_gaugePlus();
 
         if (stm <= 0)
