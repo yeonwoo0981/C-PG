@@ -20,7 +20,6 @@ public class EnemyMove : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log(range);
         player = GameObject.FindGameObjectWithTag("Player");
         range = Vector2.Distance(transform.position, player.transform.position);
         vec = player.transform.position - transform.position;
