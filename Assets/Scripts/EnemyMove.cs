@@ -11,23 +11,26 @@ public class EnemyMove : MonoBehaviour
 
     private float attackrange = 2f;
     private float range;
+    private float lastattacktime = 0f;
+    private float attacktime = 1.5f;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+
         range = Vector2.Distance(transform.position, player.transform.position);
         vec = player.transform.position - transform.position;
     }
     public void FixedUpdate()
     {
         locate();
-        AttackLenght();
+        AttackLength();
         AnimationRun();
     }
 
@@ -39,29 +42,38 @@ public class EnemyMove : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
-    void AttackLenght()
+    void AttackLength()
     {
-        if (range <= attackrange)
+        if (range <= attackrange && Time.time >= lastattacktime + attacktime)
         {
-            ani.SetTrigger("attack");
             speed = 0f;
+            rigid.linearVelocity = Vector2.zero;
+            Attack();
+            lastattacktime = Time.time;
         }
-        else
+        if (Time.time! >= lastattacktime + attacktime)
         {
             speed = 2f;
             rigid.linearVelocity = vec.normalized * speed;
+            ani.SetBool("attack", false);
+
         }
+    }
+
+    void Attack()
+    {
+        ani.SetBool("attack", true);
     }
 
     void AnimationRun()
     {
-        if (vec.x > 0 || vec.x < 0)
+        if (vec.x > 0 || vec.x < 0 && speed != 0)
         {
             ani.SetBool("run", true);
         }
         else
         {
-            ani.SetBool("run", true);
+            ani.SetBool("run", false);
         }
     }
 }
