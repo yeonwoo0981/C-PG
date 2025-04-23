@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigid;
     private float speed = 2f;
@@ -11,23 +11,30 @@ public class EnemyMove : MonoBehaviour
 
     private float attackrange = 2f;
     private float range;
+<<<<<<< HEAD
+    private float C_Time = 0;
+=======
+    private float lastattacktime = 0f;
+    private float attacktime = 1.5f;
+>>>>>>> 472aebe3cf208cb00abd92921a1920613bed60a4
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+
         range = Vector2.Distance(transform.position, player.transform.position);
         vec = player.transform.position - transform.position;
     }
     public void FixedUpdate()
     {
         locate();
-        AttackLenght();
+        AttackLength();
         AnimationRun();
     }
 
@@ -39,29 +46,64 @@ public class EnemyMove : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
-    void AttackLenght()
+    void AttackLength()
     {
-        if (range <= attackrange)
+        if (range <= attackrange && Time.time >= lastattacktime + attacktime)
         {
-            ani.SetTrigger("attack");
+<<<<<<< HEAD
+            ani.SetBool("attack",true);
+            speed = 0;
+            E_Damage();
+=======
             speed = 0f;
+            rigid.linearVelocity = Vector2.zero;
+            Attack();
+            lastattacktime = Time.time;
+>>>>>>> 472aebe3cf208cb00abd92921a1920613bed60a4
         }
-        else
+        if (Time.time! >= lastattacktime + attacktime)
         {
             speed = 2f;
             rigid.linearVelocity = vec.normalized * speed;
+            ani.SetBool("attack", false);
+
         }
+    }
+
+    void Attack()
+    {
+        ani.SetBool("attack", true);
     }
 
     void AnimationRun()
     {
-        if (vec.x > 0 || vec.x < 0)
+        if (vec.x > 0 || vec.x < 0 && speed != 0)
         {
             ani.SetBool("run", true);
         }
         else
         {
-            ani.SetBool("run", true);
+            ani.SetBool("run", false);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            C_Time = Time.deltaTime;
+        else
+            C_Time = 0;
+
+        Debug.Log(C_Time);
+    }
+    public bool E_Damage()
+    {
+        if (C_Time >= 0.7f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }
