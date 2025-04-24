@@ -61,7 +61,10 @@ public class StmScript : MonoBehaviour
         {
             _stm -= 20f;
             _stm = Mathf.Clamp(_stm, 0, _maxstm);
+
             Debug.Log($"Stamina: {_stm}");
+
+
         }
         CheckHp();
     }
@@ -69,7 +72,9 @@ public class StmScript : MonoBehaviour
     {
         _stm += 4 * Time.deltaTime;
         _stm = Mathf.Clamp(_stm, 0, _maxstm);
+
         Debug.Log($"Stamina: {_stm}");
         CheckHp();
+
     }
 }
