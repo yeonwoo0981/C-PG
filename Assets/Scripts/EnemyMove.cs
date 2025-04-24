@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigid;
     private float speed = 2f;
@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
 
     private float attackrange = 2f;
     private float range;
+<<<<<<< HEAD
     private float C_Time = 0;
+=======
+>>>>>>> df8f67a9afe4de062d28e80b6c90159b54e89b1e
     private float lastattacktime = 0f;
     private float attacktime = 1.5f;
 
@@ -47,9 +50,12 @@ public class Enemy : MonoBehaviour
     {
         if (range <= attackrange && Time.time >= lastattacktime + attacktime)
         {
+<<<<<<< HEAD
             ani.SetBool("attack",true);
             speed = 0;
             E_Damage();
+=======
+>>>>>>> df8f67a9afe4de062d28e80b6c90159b54e89b1e
             speed = 0f;
             rigid.linearVelocity = Vector2.zero;
             Attack();
@@ -78,26 +84,6 @@ public class Enemy : MonoBehaviour
         else
         {
             ani.SetBool("run", false);
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-            C_Time = Time.deltaTime;
-        else
-            C_Time = 0;
-
-        Debug.Log(C_Time);
-    }
-    public bool E_Damage()
-    {
-        if (C_Time >= 0.7f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }

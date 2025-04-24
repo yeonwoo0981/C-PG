@@ -60,7 +60,7 @@ public class Hp : MonoBehaviour
 
         if (curHealth <= 0)
         {
-            Debug.Log("»ç¸Á");
+            Destroy(gameObject);
         }
     }
 }
