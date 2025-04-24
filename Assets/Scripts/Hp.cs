@@ -4,8 +4,8 @@ using TMPro;
 
 public class Hp : MonoBehaviour
 {
-    [SerializeField] private float curHealth = 100f;
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float _curHealth = 100f;
+    [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private GameObject hpScripts;
 
     
@@ -20,7 +20,7 @@ public class Hp : MonoBehaviour
        
         if (hpText == null)
         {
-            Transform textTransform = transform.Find("StaminaText");
+            Transform textTransform = transform.Find("hpText");
             if (textTransform != null)
             {
                 hpText = textTransform.GetComponent<TextMeshProUGUI>();
@@ -33,32 +33,32 @@ public class Hp : MonoBehaviour
 
     private void SetHp(float amount)
     {
-        maxHealth = amount;
-        curHealth = maxHealth;
+        _maxHealth = amount;
+        _curHealth = _maxHealth;
         CheckHp(); 
     }
 
     public void CheckHp()
     {
         if (HpBarSlider != null)
-            HpBarSlider.value = curHealth / maxHealth;
+            HpBarSlider.value = _curHealth / _maxHealth;
 
        
         if (hpText != null)
-            hpText.text = $"{curHealth}/{maxHealth}";
+            hpText.text = $"{_curHealth}/{_maxHealth}";
     }
 
     
 
     public void Damage(float damage)
     {
-        if (maxHealth == 0 || curHealth <= 0)
+        if (_maxHealth == 0 || _curHealth <= 0)
             return;
 
-        curHealth -= damage;
+        _curHealth -= damage;
         CheckHp(); 
 
-        if (curHealth <= 0)
+        if (_curHealth <= 0)
         {
             Destroy(gameObject);
         }
@@ -68,8 +68,9 @@ public class Hp : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            curHealth -= 5;
-            Debug.Log(curHealth);
+            _curHealth -= 5;
+            Debug.Log(_curHealth);
+            CheckHp();
         }
     }
 }

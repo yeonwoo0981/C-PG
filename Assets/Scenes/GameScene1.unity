@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 188519266}
   - component: {fileID: 188519267}
   - component: {fileID: 188519268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1292,8 +1292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0536dc2498cfd8a4c8aa9f5bebb7c2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 100
-  maxHealth: 100
+  _curHealth: 100
+  _maxHealth: 100
   hpScripts: {fileID: 0}
   hpText: {fileID: 1526531956}
   HpBarSlider: {fileID: 1682740226}
