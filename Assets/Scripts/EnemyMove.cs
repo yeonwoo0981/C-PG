@@ -47,6 +47,7 @@ public class EnemyMove : MonoBehaviour
         if (range <= attackrange && Time.time >= lastattacktime + attacktime)
         {
             ani.SetBool("attack", true);
+            ani.SetBool("attack", true);
             speed = 0;
             speed = 0f;
             rigid.linearVelocity = Vector2.zero;

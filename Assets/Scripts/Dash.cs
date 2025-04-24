@@ -14,17 +14,14 @@ public class Dash : MonoBehaviour
     private bool isCanUseDash = true;
     public float DashcoolTime = 1.5f;
     private float currentTime = 0;
-    public float y = 0.1f;
+
     public float stm = 100f;
     public float c_TimeMax = 10f;
     public float maxStm = 100f;
+    public StmScript _stmscript;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-    private void Start()
-    {
-        stm = maxStm;
     }
     private void Update()
     {
@@ -46,14 +43,13 @@ public class Dash : MonoBehaviour
                 else if (DashcoolTime < currentTime)
                 {
                     isCanUseDash = false;
-                    rb.linearVelocity = new Vector2(dashdir, y) * power;
+                    rb.linearVelocity = new Vector2(dashdir, 0) * power;
                     StartCoroutine(EndVelocity());
                     currentTime = 0;
                 }
             }
         }
-
-        stm_gaugePlus();
+        _stmscript.stm_gaugePlus();
 
         
     }
@@ -67,18 +63,6 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(DashTime);
         rb.linearVelocity = Vector2.zero;
         isCanUseDash = true;
-        stm_gaugeMin();
-    }
-    public void stm_gaugeMin()
-    {
-        stm -= 20f;
-        stm = Mathf.Clamp(stm, 20, maxStm);
-        Debug.Log("Stamina: " + stm);
-    }
-    public void stm_gaugePlus()
-    {
-        Debug.Log(stm);
-        stm += 4* Time.deltaTime;
-        stm = Mathf.Clamp(stm, 20, maxStm);
+        _stmscript.stm_gaugeMin();
     }
 }
