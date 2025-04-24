@@ -64,12 +64,20 @@ public class Hp : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            curHealth -= 5;
-            Debug.Log(curHealth);
+            if (curHealth <= 0) 
+            {
+                curHealth = 0;
+                Debug.Log("사망");
+            }
+            else if (curHealth > 0)
+            {
+                curHealth -= 5;
+                Debug.Log($"좀비 체력 : {curHealth}");
+            }
         }
     }
 }
