@@ -1038,8 +1038,8 @@ GameObject:
   - component: {fileID: 830373387}
   - component: {fileID: 830373386}
   - component: {fileID: 830373394}
-  - component: {fileID: 830373393}
   - component: {fileID: 830373395}
+  - component: {fileID: 830373393}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1309,7 +1309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e7d33a59c4b4745a703350407343c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stmText: {fileID: 1856758869}
   qustn: {fileID: 830373386}
+  stmBarSlider: {fileID: 1181636911}
 --- !u!1 &834767526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,8 +1579,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1922016867}
-  - {fileID: 1856758868}
   - {fileID: 1046086783}
+  - {fileID: 1856758868}
   m_Father: {fileID: 760477642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
