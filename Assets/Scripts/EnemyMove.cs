@@ -12,9 +12,12 @@ public class EnemyMove : MonoBehaviour
     private float attackrange = 2f;
     private float range;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private float C_Time = 0;
 =======
 >>>>>>> df8f67a9afe4de062d28e80b6c90159b54e89b1e
+=======
+>>>>>>> 6190759c8d50e209fd9237699acc4e175d0618f3
     private float lastattacktime = 0f;
     private float attacktime = 1.5f;
 
@@ -51,11 +54,14 @@ public class EnemyMove : MonoBehaviour
         if (range <= attackrange && Time.time >= lastattacktime + attacktime)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             ani.SetBool("attack",true);
             speed = 0;
             E_Damage();
 =======
 >>>>>>> df8f67a9afe4de062d28e80b6c90159b54e89b1e
+=======
+>>>>>>> 6190759c8d50e209fd9237699acc4e175d0618f3
             speed = 0f;
             rigid.linearVelocity = Vector2.zero;
             Attack();
