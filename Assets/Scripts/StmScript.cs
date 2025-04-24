@@ -35,13 +35,6 @@ public class StmScript : MonoBehaviour
         CheckHp();
     }
 
-    private void SetHp(float amount)
-    {
-        _maxstm = amount;
-        _stm = _maxstm;
-        CheckHp();
-    }
-
     public void CheckHp()
     {
         if (stmBarSlider != null)
@@ -53,16 +46,15 @@ public class StmScript : MonoBehaviour
     }
     public void stm_gaugeMin()
     {
-        if (_stm <= 20)
+        if (_stm <= 30)
         {
             qustn.power = 0;
         }
         else
         {
-            _stm -= 20f;
+            qustn.power = 12;
+            _stm -= 30f;
             _stm = Mathf.Clamp(_stm, 0, _maxstm);
-
-            Debug.Log($"Stamina: {_stm}");
 
 
         }
@@ -70,10 +62,9 @@ public class StmScript : MonoBehaviour
     }
     public void stm_gaugePlus()
     {
-        _stm += 4 * Time.deltaTime;
+        _stm += 5 * Time.deltaTime;
         _stm = Mathf.Clamp(_stm, 0, _maxstm);
 
-        Debug.Log($"Stamina: {_stm}");
         CheckHp();
 
     }

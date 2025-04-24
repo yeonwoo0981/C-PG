@@ -68,10 +68,10 @@ public class Hp : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (curHealth <= 0) 
+            if (curHealth < 0) 
             {
-                curHealth = 0;
                 Debug.Log("»ç¸Á");
+                curHealth = 0;
             }
             else if (curHealth > 0)
             {
