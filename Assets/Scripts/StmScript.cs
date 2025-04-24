@@ -30,13 +30,11 @@ public class StmScript : MonoBehaviour
         {
             _stm -= 20f;
             _stm = Mathf.Clamp(_stm, 0, _maxstm);
-            Debug.Log(_stm);
         }
     }
     public void stm_gaugePlus()
     {
         _stm += 4 * Time.deltaTime;
         _stm = Mathf.Clamp(_stm, 0, _maxstm);
-        Debug.Log(_stm);
     }
 }
