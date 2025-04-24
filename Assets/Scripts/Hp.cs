@@ -15,12 +15,12 @@ public class Hp : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"Ω√¿€ Ω√ HP: {curHealth}/{maxHealth}");
+        
 
        
         if (hpText == null)
         {
-            Transform textTransform = transform.Find("hpText");
+            Transform textTransform = transform.Find("StaminaText");
             if (textTransform != null)
             {
                 hpText = textTransform.GetComponent<TextMeshProUGUI>();
