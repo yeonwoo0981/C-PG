@@ -78,6 +78,7 @@ public class Hp : MonoBehaviour
                 curHealth -= 5;
                 Debug.Log($"좀비 체력 : {curHealth}");
             }
+            CheckHp();
         }
     }
 }

@@ -32,10 +32,10 @@ public class StmScript : MonoBehaviour
             }
         }
 
-        CheckHp();
+        CheckStm();
     }
 
-    public void CheckHp()
+    public void CheckStm()
     {
         if (stmBarSlider != null)
             stmBarSlider.value = _stm / _maxstm;
@@ -58,14 +58,14 @@ public class StmScript : MonoBehaviour
 
 
         }
-        CheckHp();
+        CheckStm();
     }
     public void stm_gaugePlus()
     {
         _stm += 5 * Time.deltaTime;
         _stm = Mathf.Clamp(_stm, 0, _maxstm);
 
-        CheckHp();
+        CheckStm();
 
     }
 }
