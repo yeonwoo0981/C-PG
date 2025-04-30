@@ -15,12 +15,12 @@ public class Hp : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"시작 시 HP: {curHealth}/{maxHealth}");
+        
 
        
         if (hpText == null)
         {
-            Transform textTransform = transform.Find("hpText");
+            Transform textTransform = transform.Find("StaminaText");
             if (textTransform != null)
             {
                 hpText = textTransform.GetComponent<TextMeshProUGUI>();
@@ -61,6 +61,24 @@ public class Hp : MonoBehaviour
         if (curHealth <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (curHealth < 0) 
+            {
+                Debug.Log("사망");
+                curHealth = 0;
+            }
+            else if (curHealth > 0)
+            {
+                curHealth -= 5;
+                Debug.Log($"좀비 체력 : {curHealth}");
+            }
+            CheckHp();
         }
     }
 }

@@ -1,11 +1,15 @@
+using TMPro;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StmScript : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI stmText;
     public Dash qustn;
     private float _stm;
     private float _maxstm;
+    public Slider stmBarSlider;
     void Awake()
     {
         qustn = GameObject.Find("Player").GetComponent<Dash>();
@@ -18,25 +22,50 @@ public class StmScript : MonoBehaviour
     private void Start()
     {
         _stm = _maxstm;
+        if (stmText == null)
+        {
+            Transform textTransform = transform.Find("stmText");
+            if (textTransform != null)
+            {
+                stmText = textTransform.GetComponent<TextMeshProUGUI>();
+
+            }
+        }
+
+        CheckStm();
     }
 
+    public void CheckStm()
+    {
+        if (stmBarSlider != null)
+            stmBarSlider.value = _stm / _maxstm;
+
+
+        if (stmText != null)
+            stmText.text = $"{_stm:F1}/{_maxstm}";
+    }
     public void stm_gaugeMin()
     {
-        if (_stm <= 20)
+        if (_stm <= 30)
         {
             qustn.power = 0;
         }
         else
         {
-            _stm -= 20f;
+            qustn.power = 12;
+            _stm -= 30f;
             _stm = Mathf.Clamp(_stm, 0, _maxstm);
-            Debug.Log(_stm);
+
+
         }
+        CheckStm();
     }
     public void stm_gaugePlus()
     {
-        _stm += 4 * Time.deltaTime;
+        _stm += 5 * Time.deltaTime;
         _stm = Mathf.Clamp(_stm, 0, _maxstm);
-        Debug.Log(_stm);
+
+        CheckStm();
+
     }
 }
