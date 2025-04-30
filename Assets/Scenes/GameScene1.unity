@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 100
   maxHealth: 100
-  hpScripts: {fileID: 0}
+  hpScripts: {fileID: 830373385}
   hpText: {fileID: 1526531956}
   HpBarSlider: {fileID: 1682740226}
 --- !u!114 &830373395
