@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public Slider progressBar;
-    public Text progressText; 
+    [SerializeField] private Slider progressBar;
 
     void Start()
     {
@@ -14,7 +13,7 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(LoadGameScene());
     }
 
-    IEnumerator LoadGameScene()
+    private IEnumerator LoadGameScene()
     {
         
         progressBar.value = 0f;
@@ -29,12 +28,6 @@ public class SceneChanger : MonoBehaviour
             float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
             progressBar.value = progress;
 
-            
-            if (progressText != null)
-            {
-                progressText.text = $"로딩 중... {Mathf.Floor(progress * 100)}%";
-            }
-
             yield return null;
         }
 
@@ -45,20 +38,11 @@ public class SceneChanger : MonoBehaviour
             fakeProgress += 0.01f;
             progressBar.value = fakeProgress;
 
-            if (progressText != null)
-            {
-                progressText.text = $"로딩 중... {Mathf.Floor(fakeProgress * 100)}%";
-            }
-
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         
         progressBar.value = 1.0f;
-        if (progressText != null)
-        {
-            progressText.text = "로딩 완료!";
-        }
 
         
         yield return new WaitForSeconds(0.5f);

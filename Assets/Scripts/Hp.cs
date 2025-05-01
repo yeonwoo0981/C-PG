@@ -15,6 +15,7 @@ public class Hp : MonoBehaviour
 
     private void Start()
     {
+        curHealth = maxHealth;
         
 
        
