@@ -25,6 +25,20 @@ public class Player : MonoBehaviour
     {
         transform.position += (Vector3)moveDir * speed * Time.deltaTime;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGround = true;
+            jumpCount = 1;
+            animator.SetBool("isJumping", false);
+            if (moveDir.x != 0)
+            {
+                animator.SetBool("isRunning", true);
+            }
+        }
+    }
+    
 
     public void OnMove(InputValue value)
     {
@@ -34,7 +48,7 @@ public class Player : MonoBehaviour
 
     public void PlayerAnimator()
     {
-        if(moveDir.x != 0)
+        if (moveDir.x != 0)
         {
             animator.SetBool("isRunning", true);
         }
@@ -50,18 +64,10 @@ public class Player : MonoBehaviour
         if (jumpCount < 2)
         {
             animator.SetBool("isJumping", true);
+            animator.SetBool("isRunning", false);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             ++jumpCount;
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGround = true;
-            jumpCount = 1;
-            animator.SetBool("isJumping", false);
         }
     }
 }
