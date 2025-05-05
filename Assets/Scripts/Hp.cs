@@ -1,85 +1,46 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; 
+using TMPro;
 
 public class Hp : MonoBehaviour
 {
-    [SerializeField] private float curHealth = 100f;
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private GameObject hpScripts;
-
-    
-    [SerializeField] private TextMeshProUGUI hpText; 
+    [SerializeField] private TextMeshProUGUI hpText;
+    public float curHealth = 100f;
+    public float maxHealth = 100f;
 
     public Slider HpBarSlider;
 
     private void Start()
     {
-        curHealth = maxHealth;
-        
-
-       
-        if (hpText == null)
-        {
-            Transform textTransform = transform.Find("StaminaText");
-            if (textTransform != null)
-            {
-                hpText = textTransform.GetComponent<TextMeshProUGUI>();
-                
-            }
-        }
-
-        CheckHp();
+        maxHealth = curHealth;
+        UpdateHpText();
     }
 
-    private void SetHp(float amount)
-    {
-        maxHealth = amount;
-        curHealth = maxHealth;
-        CheckHp(); 
-    }
-
-    public void CheckHp()
+    public void UpdateHpText()
     {
         if (HpBarSlider != null)
             HpBarSlider.value = curHealth / maxHealth;
 
-       
         if (hpText != null)
             hpText.text = $"{curHealth}/{maxHealth}";
     }
 
-    
-
     public void Damage(float damage)
     {
-        if (maxHealth == 0 || curHealth <= 0)
+        if (curHealth <= 0)
             return;
 
         curHealth -= damage;
-        CheckHp(); 
-
-        if (curHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        if (curHealth < 0) curHealth = 0;
+        Debug.Log($"플레이어 체력: {curHealth}");
+        UpdateHpText();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            if (curHealth < 0) 
-            {
-                Debug.Log("사망");
-                curHealth = 0;
-            }
-            else if (curHealth > 0)
-            {
-                curHealth -= 5;
-                Debug.Log($"좀비 체력 : {curHealth}");
-            }
-            CheckHp();
+            Damage(5f);
         }
     }
 }
