@@ -41,7 +41,7 @@ public class levelUp : MonoBehaviour
         {
 
             _lvUpText.gameObject.SetActive(true);
-            _lvUpText.text = $"LEVEL UP!";
+            _lvUpText.text = $"Level UP";
 
             yield return new WaitForSeconds(3f);
 
