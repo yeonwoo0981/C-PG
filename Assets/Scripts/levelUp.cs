@@ -33,6 +33,7 @@ public class levelUp : MonoBehaviour
         level += 1;
         Debug.Log($"플레이어 레벨: {level}");
         HpPlus();
+        StartCoroutine(ShowLevelUpText());
     }
 
     private IEnumerator ShowLevelUpText()
