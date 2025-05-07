@@ -3,14 +3,13 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     public int e_HP = 20;
-    
     private bool E_isDead = false;
+    private PlayerM _player;
+    private int p_damage;
 
     private void Start()
     {
         E_isDead = false;
-
-       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,9 +35,6 @@ public class EnemyHP : MonoBehaviour
     public void E_Dead()
     {
         Debug.Log("Enemy Dead");
-
-       
-
         Destroy(gameObject);
     }
 }
