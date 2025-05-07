@@ -20,6 +20,6 @@ public class AnimationOnHandle : MonoBehaviour
             yield return new WaitForSeconds(_animationPlaySpeed);
             GetComponent<Image>().sprite = _sprite[i];
         }
-        StartCoroutine(Animation());
+        
     }
 }
