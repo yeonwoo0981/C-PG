@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             float randomx = Random.Range(spawnx.x, spawnx.y);
-            Vector2 spawn = new Vector2(randomx, -2.682f);
+            Vector2 spawn = new Vector2(randomx, -3.26f);
             GameObject instant = Instantiate(prefabs, spawn, Quaternion.identity); //오브젝트,스폰위치,회전 없음
         }
     }
