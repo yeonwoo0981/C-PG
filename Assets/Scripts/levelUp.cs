@@ -55,8 +55,8 @@ public class levelUp : MonoBehaviour
     {
         if (playerHp != null)
         {
-            playerHp.maxHealth += 10;
-            playerHp.curHealth += 10;
+            playerHp._maxHealth += 10;
+            playerHp._curHealth += 10;
             playerHp.UpdateHpText();
         }
     }

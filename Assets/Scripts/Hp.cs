@@ -4,35 +4,36 @@ using TMPro;
 
 public class Hp : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI hpText;
-    public float curHealth = 100f;
-    public float maxHealth = 100f;
+    [SerializeField] private TextMeshProUGUI _hpText;
+    private EnemyDamage _enemyDamage;
+    public float _curHealth = 100f;
+    public float _maxHealth = 100f;
 
     public Slider HpBarSlider;
 
     private void Start()
     {
-        maxHealth = curHealth;
+        _maxHealth = _curHealth;
         UpdateHpText();
     }
 
     public void UpdateHpText()
     {
         if (HpBarSlider != null)
-            HpBarSlider.value = curHealth / maxHealth;
+            HpBarSlider.value = _curHealth / _maxHealth;
 
-        if (hpText != null)
-            hpText.text = $"{curHealth}/{maxHealth}";
+        if (_hpText != null)
+            _hpText.text = $"{_curHealth}/{_maxHealth}";
     }
 
-    public void Damage(float damage)
+    public void Damage()
     {
-        if (curHealth <= 0)
+        if (_curHealth <= 0)
             return;
 
-        curHealth -= damage;
-        if (curHealth < 0) curHealth = 0;
-        Debug.Log($"플레이어 체력: {curHealth}");
+        _curHealth -= 5f;
+        if (_curHealth < 0) _curHealth = 0;
+        Debug.Log($"플레이어 체력: {_curHealth}");
         UpdateHpText();
     }
 
@@ -40,7 +41,7 @@ public class Hp : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Damage(5f);
+            Damage();
         }
     }
 }

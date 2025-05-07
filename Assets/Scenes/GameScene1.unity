@@ -1152,9 +1152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0536dc2498cfd8a4c8aa9f5bebb7c2ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 1526531956}
-  curHealth: 100
-  maxHealth: 100
+  _hpText: {fileID: 1526531956}
+  _curHealth: 100
+  _maxHealth: 100
   HpBarSlider: {fileID: 1682740226}
 --- !u!114 &830373395
 MonoBehaviour:
