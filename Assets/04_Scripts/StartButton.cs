@@ -27,7 +27,7 @@ public class StartButton : MonoBehaviour
     public void StartGame()
     {
         
-        SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene(1);
     }
 
 }
