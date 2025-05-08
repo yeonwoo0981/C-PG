@@ -28,7 +28,6 @@ public class EnemyMove : MonoBehaviour
     {
         locate();
         AnimationRun();
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f);
         Attack();
     }
 
@@ -39,10 +38,13 @@ public class EnemyMove : MonoBehaviour
         else if (vec.x < 0)
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
-
     void Attack()
     {
-        if (range < attackrange)
+        LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
+        Debug.DrawRay(transform.position, vec.normalized, Color.red, 1.5f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f, layer);
+
+        if (hit.collider != null)
         {
             speed = 0f;
             rigid.linearVelocity = Vector2.zero;
@@ -68,3 +70,4 @@ public class EnemyMove : MonoBehaviour
         }
     }
 }
+
