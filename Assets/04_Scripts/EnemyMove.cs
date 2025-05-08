@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
@@ -11,8 +12,7 @@ public class EnemyMove : MonoBehaviour
 
     private float attackrange = 2f;
     private float range;
-    private float lastattacktime = 0f;
-    private float attacktime = 1.5f;
+    private bool isattack = false;
 
     private void Awake()
     {
@@ -23,15 +23,20 @@ public class EnemyMove : MonoBehaviour
 
     public void Update()
     {
-
         range = Vector2.Distance(transform.position, player.transform.position);
         vec = player.transform.position - transform.position;
     }
     public void FixedUpdate()
     {
         locate();
-        AttackLength();
         AnimationRun();
+        Debug.DrawRay(transform.position, Vector2.left, Color.red, 1.5f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f);
+
+        if (range < attackrange && isattack == false)
+        {
+            Attack();
+        }
     }
 
     void locate()
@@ -42,28 +47,12 @@ public class EnemyMove : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
-    void AttackLength()
-    {
-        if (range <= attackrange && Time.time >= lastattacktime + attacktime)
-        {
-            ani.SetBool("attack", true);
-            speed = 0f;
-            rigid.linearVelocity = Vector2.zero;
-            Attack();
-            lastattacktime = Time.time;
-        }
-        if (Time.time! >= lastattacktime + attacktime)
-        {
-            speed = 2f;
-            rigid.linearVelocity = vec.normalized * speed;
-            ani.SetBool("attack", false);
-
-        }
-    }
-
     void Attack()
     {
-        ani.SetBool("attack", true);
+        if (isattack == false && range < attackrange)
+        {
+            StartCoroutine(cooltime());
+        }
     }
 
     void AnimationRun()
@@ -76,5 +65,18 @@ public class EnemyMove : MonoBehaviour
         {
             ani.SetBool("run", false);
         }
+    }
+
+    public IEnumerator cooltime()
+    {
+        isattack = true;
+        speed = 0f;
+        rigid.linearVelocity = Vector2.zero;
+        ani.SetBool("attack", true);
+        yield return new WaitForSeconds(1.5f);
+        isattack = false;
+        speed = 2f;
+        rigid.linearVelocity = vec.normalized * speed;
+        ani.SetBool("attack", false);
     }
 }
