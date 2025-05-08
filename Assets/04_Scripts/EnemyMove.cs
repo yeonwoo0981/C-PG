@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
@@ -12,9 +11,6 @@ public class EnemyMove : MonoBehaviour
 
     private float attackrange = 2f;
     private float range;
-    private bool isattack = false;
-    private float lastattacktime = 0f;
-    private float attacktime = 1.5f;
 
     private void Awake()
     {
@@ -32,13 +28,8 @@ public class EnemyMove : MonoBehaviour
     {
         locate();
         AnimationRun();
-        Debug.DrawRay(transform.position, Vector2.left, Color.red, 1.5f);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f);
-
-        if (range < attackrange && isattack == false)
-        {
-            Attack();
-        }
+        Attack();
     }
 
     void locate()
@@ -51,9 +42,17 @@ public class EnemyMove : MonoBehaviour
 
     void Attack()
     {
-        if (isattack == false && range < attackrange)
+        if (range < attackrange)
         {
-            StartCoroutine(cooltime());
+            speed = 0f;
+            rigid.linearVelocity = Vector2.zero;
+            ani.SetBool("attack", true);
+        }
+        else
+        {
+            speed = 2f;
+            rigid.linearVelocity = vec.normalized * speed;
+            ani.SetBool("attack", false);
         }
     }
 
@@ -67,18 +66,5 @@ public class EnemyMove : MonoBehaviour
         {
             ani.SetBool("run", false);
         }
-    }
-
-    public IEnumerator cooltime()
-    {
-        isattack = true;
-        speed = 0f;
-        rigid.linearVelocity = Vector2.zero;
-        ani.SetBool("attack", true);
-        yield return new WaitForSeconds(1.5f);
-        isattack = false;
-        speed = 2f;
-        rigid.linearVelocity = vec.normalized * speed;
-        ani.SetBool("attack", false);
     }
 }
