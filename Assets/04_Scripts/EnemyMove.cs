@@ -13,6 +13,8 @@ public class EnemyMove : MonoBehaviour
     private float attackrange = 2f;
     private float range;
     private bool isattack = false;
+    private float lastattacktime = 0f;
+    private float attacktime = 1.5f;
 
     private void Awake()
     {
