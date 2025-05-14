@@ -1,10 +1,6 @@
-using Microsoft.Win32.SafeHandles;
 using System.Collections;
-using Unity.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 public class Dash : MonoBehaviour
 {
     private float dashdir;
@@ -15,12 +11,15 @@ public class Dash : MonoBehaviour
     public float DashcoolTime = 1.5f;
     private float currentTime = 0;
 
+    private Animator ani;
+
     public float stm = 100f;
     public float c_TimeMax = 10f;
     public float maxStm = 100f;
     public StmScript _stmscript;
     private void Awake()
     {
+        ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -37,6 +36,7 @@ public class Dash : MonoBehaviour
             else if (DashcoolTime < currentTime)
             {
                 isCanUseDash = false;
+                ani.SetBool("isDashng", true);
                 rb.linearVelocity = new Vector2(dashdir, 0) * power;
                 StartCoroutine(EndVelocity());
                 currentTime = 0;
@@ -44,7 +44,7 @@ public class Dash : MonoBehaviour
         }
         _stmscript.stm_gaugePlus();
 
-        
+
     }
     public void OnMove(InputValue value)
     {
@@ -55,6 +55,7 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSeconds(DashTime);
         rb.linearVelocity = Vector2.zero;
+        ani.SetBool("isDashng", false);
         isCanUseDash = true;
         _stmscript.stm_gaugeMin();
     }
