@@ -9,7 +9,6 @@ public class StartButton : MonoBehaviour
 
     void Start()
     {
-        
         if (volumeSlider != null)
         {
             volumeSlider.value = PlayerPrefs.GetFloat("GameVolume", 0.5f);
@@ -19,15 +18,14 @@ public class StartButton : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        
+
         PlayerPrefs.SetFloat("GameVolume", volume);
         AudioListener.volume = volume;
     }
 
     public void StartGame()
     {
-        
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("LoadingScene");
     }
 
 }
