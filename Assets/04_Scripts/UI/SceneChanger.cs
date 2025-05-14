@@ -1,48 +1,49 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private Slider progressBar;
+    [SerializeField] private TextMeshProUGUI LodingText;
 
     void Start()
     {
-        
         StartCoroutine(LoadGameScene());
     }
 
     private IEnumerator LoadGameScene()
     {
-        
-        progressBar.value = 0f;
+        float displayedProgress = 0f;
 
-       
+        LodingText.text = "0%";
+
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(2);
-        asyncLoad.allowSceneActivation = false; 
+        asyncLoad.allowSceneActivation = false;
 
-        while (asyncLoad.progress < 0.9f) 
+        
+        while (asyncLoad.progress < 0.9f)
         {
-           
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-            progressBar.value = progress;
+            float targetProgress = Mathf.Clamp01(asyncLoad.progress / 0.9f) * 70f;
+
+            
+            while (displayedProgress < targetProgress)
+            {
+                displayedProgress += 0.5f;
+                LodingText.text = Mathf.RoundToInt(displayedProgress) + "%";
+                yield return new WaitForSeconds(0.2f);
+            }
 
             yield return null;
         }
 
         
-        float fakeProgress = progressBar.value;
-        while (fakeProgress < 1.0f)
+        while (displayedProgress < 100f)
         {
-            fakeProgress += 0.01f;
-            progressBar.value = fakeProgress;
-
-            yield return new WaitForSeconds(0.1f);
+            displayedProgress += 0.5f;
+            LodingText.text = Mathf.RoundToInt(displayedProgress) + "%";
+            yield return new WaitForSeconds(0.02f);
         }
-
-        
-        progressBar.value = 1.0f;
 
         
         yield return new WaitForSeconds(0.5f);

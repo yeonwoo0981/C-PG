@@ -44,6 +44,8 @@ public class NextStageProtal : MonoBehaviour
             {
                 LoadNextScene();
                 Debug.Log("산으로 이동");
+                panelUI.SetActive(false);
+                noOpenUI.SetActive(false);
             }
             else
             {
@@ -56,6 +58,7 @@ public class NextStageProtal : MonoBehaviour
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(3);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
