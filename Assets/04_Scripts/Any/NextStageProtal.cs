@@ -2,13 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NextStageProtal : MonoBehaviour
 {
+    [SerializeField] private GameObject noOpenUI;
+    [SerializeField] private GameObject panelUI;
     private bool portalActive = false;
+
+    private IEnumerator HideNoOpenUIAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        noOpenUI.SetActive(false);
+    }
 
     private void Start()
     {
+        panelUI.SetActive(false);
+        noOpenUI.SetActive(false);
         InvokeRepeating("CheckEnemy", 1f, 1f);
     }
 
@@ -18,9 +29,10 @@ public class NextStageProtal : MonoBehaviour
 
         if (enemyes.Length == 0)
         {
-            Debug.Log("Æ÷Å» ¿ÀÇÂ");
             portalActive = true;
             CancelInvoke("CheckEnemy");
+            panelUI.SetActive(true);
+            Debug.Log("Æ÷Å» ¿ÀÇÂ");
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,11 +42,13 @@ public class NextStageProtal : MonoBehaviour
         {
             if (portalActive)
             {
-                Debug.Log("»êÀ¸·Î ÀÌµ¿");
                 LoadNextScene();
+                Debug.Log("»êÀ¸·Î ÀÌµ¿");
             }
             else
             {
+                noOpenUI.SetActive(true);
+                StartCoroutine(HideNoOpenUIAfterDelay(3f));
                 Debug.Log("Æ÷Å» ¹Ì¿ÀÇÂ");
             }
         }
