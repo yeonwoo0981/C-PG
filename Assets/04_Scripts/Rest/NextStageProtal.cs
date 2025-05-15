@@ -36,10 +36,9 @@ public class NextStageProtal : MonoBehaviour
             Debug.Log("Æ÷Å» ¿ÀÇÂ");
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (portalActive)
             {
@@ -55,7 +54,9 @@ public class NextStageProtal : MonoBehaviour
                 Debug.Log("Æ÷Å» ¹Ì¿ÀÇÂ");
             }
         }
+        
     }
+    
 
     private void LoadNextScene()
     {
