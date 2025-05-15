@@ -31,6 +31,7 @@ public class NextStageProtal : MonoBehaviour
         {
             portalActive = true;
             CancelInvoke("CheckEnemy");
+            noOpenUI.SetActive(false);
             panelUI.SetActive(true);
             Debug.Log("Æ÷Å» ¿ÀÇÂ");
         }
