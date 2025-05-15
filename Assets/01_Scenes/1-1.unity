@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 213550707}
   m_Layer: 5
   m_Name: noOpenUI
-  m_TagString: Untagged
+  m_TagString: noOpenUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1687,8 +1687,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2A4\uD0DC\uBBF8\uB098\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 507f60e6631c37d428151ef59c491a60, type: 2}
-  m_sharedMaterial: {fileID: -2900484131817568658, guid: 507f60e6631c37d428151ef59c491a60, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 427d380fafbf0d04893efeae9d64f4b6, type: 2}
+  m_sharedMaterial: {fileID: -2970677621124646686, guid: 427d380fafbf0d04893efeae9d64f4b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3201,7 +3201,7 @@ MonoBehaviour:
   panelUI: {fileID: 545597016}
   transitionPanel: {fileID: 2039823483}
   transitionSpeed: 2000
-  delayBetweenTransitions: 3
+  delayBetweenTransitions: 2.2
 --- !u!1 &1920576864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,8 +3576,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uCCB4\uB825\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 507f60e6631c37d428151ef59c491a60, type: 2}
-  m_sharedMaterial: {fileID: -2900484131817568658, guid: 507f60e6631c37d428151ef59c491a60, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 427d380fafbf0d04893efeae9d64f4b6, type: 2}
+  m_sharedMaterial: {fileID: -2970677621124646686, guid: 427d380fafbf0d04893efeae9d64f4b6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

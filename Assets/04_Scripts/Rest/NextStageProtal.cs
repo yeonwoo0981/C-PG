@@ -33,7 +33,7 @@ public class NextStagePortal : MonoBehaviour
 
         if (transitionPanel == null)
         {
-            transitionPanel = GameObject.Find("SCPanel").gameObject;
+            transitionPanel = GameObject.Find("Panel").gameObject;
             Debug.Log("Transition panel assigned via code: " + (transitionPanel != null));
         }
 
@@ -71,7 +71,7 @@ public class NextStagePortal : MonoBehaviour
     private void FindUIElements()
     {
         
-        GameObject noOpenUIObj = GameObject.FindGameObjectWithTag("NoOpenUI");
+        GameObject noOpenUIObj = GameObject.FindGameObjectWithTag("noOpenUI");
         if (noOpenUIObj != null)
             noOpenUI = noOpenUIObj;
 
