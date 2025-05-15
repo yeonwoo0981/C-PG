@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -38,6 +39,20 @@ public class Boss : MonoBehaviour
         {
             StartCoroutine(Attack());
         }
+        else if (hipphit.collider != null)
+        {
+        }
+    }
+
+    public IEnumerator Attack()
+    {
+        speed = 0f;
+        rigid.linearVelocity = Vector2.zero;
+        ani.SetBool("attack", true);
+        yield return
+        speed = 2f;
+        rigid.linearVelocity = vec.normalized * speed;
+        ani.SetBool("attack", false);
     }
 
     void locate()
@@ -47,26 +62,16 @@ public class Boss : MonoBehaviour
         else if (vec.x < 0)
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
-    void Attack()
-    {
-        speed = 0f;
-        rigid.linearVelocity = Vector2.zero;
-        ani.SetBool("attack", true);
-        speed = 2f;
-        rigid.linearVelocity = vec.normalized * speed;
-        ani.SetBool("attack", false);
-    }
-}
 
-void AnimationRun()
-{
-    if (vec.x > 0 || vec.x < 0 && speed != 0)
+    void AnimationRun()
     {
-        ani.SetBool("run", true);
+        if (vec.x > 0 || vec.x < 0 && speed != 0)
+        {
+            ani.SetBool("run", true);
+        }
+        else
+        {
+            ani.SetBool("run", false);
+        }
     }
-    else
-    {
-        ani.SetBool("run", false);
-    }
-}
 }
