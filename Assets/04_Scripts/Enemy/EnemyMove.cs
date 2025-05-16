@@ -8,10 +8,8 @@ public class EnemyMove : MonoBehaviour
     private GameObject player;
 
     private Animator ani;
-
     //private float attackrange = 2f;
     private float range;
-
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -21,7 +19,6 @@ public class EnemyMove : MonoBehaviour
 
     public void Update()
     {
-        range = Vector2.Distance(transform.position, player.transform.position);
         vec = player.transform.position - transform.position;
     }
     public void FixedUpdate()
