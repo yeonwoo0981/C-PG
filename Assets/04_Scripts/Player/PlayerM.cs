@@ -14,7 +14,7 @@ public class PlayerM : MonoBehaviour
     private Animator animator;
     public int hp = 100;
     public int damage = 5;
-
+    public GameObject Sword;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,6 +24,16 @@ public class PlayerM : MonoBehaviour
     private void Update()
     {
         transform.position += (Vector3)moveDir * speed * Time.deltaTime;
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log("누름");
+            Sword.SetActive(true);
+        } 
+        else
+        {
+            Debug.Log("안누름");
+            Sword.SetActive(false);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -9,7 +9,7 @@ public class EnemyMove : MonoBehaviour
 
     private Animator ani;
 
-    private float attackrange = 2f;
+    //private float attackrange = 2f;
     private float range;
 
     private void Awake()
