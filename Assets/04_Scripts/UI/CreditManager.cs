@@ -6,7 +6,7 @@ public class CreditManager : MonoBehaviour
     public GameObject panelUI;
     public Button optionButton;
     public Button closeButton;
-    [SerializeField] private Button exitButton;
+    public Button exitButton;
     void Start()
     {
         panelUI.SetActive(false);
