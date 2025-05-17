@@ -6,14 +6,26 @@ public class Hp : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _hpText;
     private EnemyDamage _enemyDamage;
-    public float _curHealth = 100f;
-    public float _maxHealth = 100f;
-
     public Slider HpBarSlider;
+
+    private void Awake()
+    {
+        
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.hpController = this;
+        }
+    }
 
     private void Start()
     {
-        _maxHealth = _curHealth;
+        
+        if (PlayerManager.Instance != null)
+        {
+            _curHealth = PlayerManager.Instance.currentHp;
+            _maxHealth = PlayerManager.Instance.maxHp;
+        }
+
         UpdateHpText();
     }
 
@@ -31,8 +43,18 @@ public class Hp : MonoBehaviour
         if (_curHealth <= 0)
             return;
 
-        _curHealth -= 5f;
-        if (_curHealth < 0) _curHealth = 0;
+        
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.TakeDamage(5f);
+            _curHealth = PlayerManager.Instance.currentHp; 
+        }
+        else
+        {
+            _curHealth -= 5f;
+            if (_curHealth < 0) _curHealth = 0;
+        }
+
         Debug.Log($"플레이어 체력: {_curHealth}");
         UpdateHpText();
     }
@@ -43,5 +65,18 @@ public class Hp : MonoBehaviour
         {
             Damage();
         }
+    }
+
+    
+    public float _curHealth
+    {
+        get { return PlayerManager.Instance != null ? PlayerManager.Instance.currentHp : 100f; }
+        set { if (PlayerManager.Instance != null) PlayerManager.Instance.currentHp = value; }
+    }
+
+    public float _maxHealth
+    {
+        get { return PlayerManager.Instance != null ? PlayerManager.Instance.maxHp : 100f; }
+        set { if (PlayerManager.Instance != null) PlayerManager.Instance.maxHp = value; }
     }
 }

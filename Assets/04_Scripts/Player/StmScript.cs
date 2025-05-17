@@ -7,28 +7,53 @@ public class StmScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI stmText;
     public Dash qustn;
-    private float _stm;
-    private float _maxstm;
     public Slider stmBarSlider;
-    void Awake()
-    {
-        qustn = GameObject.Find("Player").GetComponent<Dash>();
-        _stm = qustn.stm;
-        _maxstm = qustn.maxStm;
-        qustn.GetComponent<Dash>().stm = 100f;
-        qustn.GetComponent<Dash>().maxStm = 100f;
 
+    private void Awake()
+    {
+       
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.staminaController = this;
+        }
     }
+
     private void Start()
     {
-        _stm = _maxstm;
+        
+        if (qustn == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                qustn = player.GetComponent<Dash>();
+            }
+        }
+
+        
+        if (PlayerManager.Instance != null)
+        {
+            _stm = PlayerManager.Instance.currentStamina;
+            _maxstm = PlayerManager.Instance.maxStamina;
+        }
+        else
+        {
+            _stm = 100f;
+            _maxstm = 100f;
+
+            if (qustn != null)
+            {
+                qustn.stm = 100f;
+                qustn.maxStm = 100f;
+            }
+        }
+
         if (stmText == null)
         {
             Transform textTransform = transform.Find("stmText");
             if (textTransform != null)
             {
                 stmText = textTransform.GetComponent<TextMeshProUGUI>();
-
             }
         }
 
@@ -40,32 +65,75 @@ public class StmScript : MonoBehaviour
         if (stmBarSlider != null)
             stmBarSlider.value = _stm / _maxstm;
 
-
         if (stmText != null)
             stmText.text = $"{_stm:F1}/{_maxstm}";
     }
+
+    
     public void stm_gaugeMin()
     {
-        if (_stm <= 30)
+        float requiredStamina = 30f;
+
+        if (_stm <= requiredStamina)
         {
-            qustn.power = 0;
+            
+            if (qustn != null)
+                qustn.power = 0;
+
+            Debug.Log("스태미나 부족");
         }
         else
         {
-            qustn.power = 12;
-            _stm -= 30f;
-            _stm = Mathf.Clamp(_stm, 0, _maxstm);
+            
+            if (qustn != null)
+                qustn.power = 12;
 
-
+            
+            if (PlayerManager.Instance != null)
+            {
+                PlayerManager.Instance.UseStamina(requiredStamina);
+                _stm = PlayerManager.Instance.currentStamina; 
+            }
+            else
+            {
+                _stm -= requiredStamina;
+                _stm = Mathf.Clamp(_stm, 0, _maxstm);
+            }
         }
+
         CheckStm();
     }
+
+   
     public void stm_gaugePlus()
     {
-        _stm += 5 * Time.deltaTime;
-        _stm = Mathf.Clamp(_stm, 0, _maxstm);
+        float recoveryRate = 5f * Time.deltaTime;
+
+        
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.RecoverStamina(recoveryRate);
+            _stm = PlayerManager.Instance.currentStamina; 
+        }
+        else
+        {
+            _stm += recoveryRate;
+            _stm = Mathf.Clamp(_stm, 0, _maxstm);
+        }
 
         CheckStm();
+    }
 
+    
+    public float _stm
+    {
+        get { return PlayerManager.Instance != null ? PlayerManager.Instance.currentStamina : 100f; }
+        set { if (PlayerManager.Instance != null) PlayerManager.Instance.currentStamina = value; }
+    }
+
+    public float _maxstm
+    {
+        get { return PlayerManager.Instance != null ? PlayerManager.Instance.maxStamina : 100f; }
+        set { if (PlayerManager.Instance != null) PlayerManager.Instance.maxStamina = value; }
     }
 }
