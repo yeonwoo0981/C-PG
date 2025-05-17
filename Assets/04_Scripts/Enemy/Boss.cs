@@ -4,12 +4,14 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigid;
-    private float speed = 2f;
     private Vector2 vec;
+    private Animator ani;
     private GameObject player;
 
-    private Animator ani;
-
+    private bool isattack = true;
+    private float speed = 2f;
+    private float dashdir;
+    private float dashpower;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class Boss : MonoBehaviour
 
     public void FixedUpdate()
     {
+        dashdir = transform.position.x;
         locate();
         AnimationRun();
         WhatAttack();
@@ -28,31 +31,62 @@ public class Boss : MonoBehaviour
 
     private void WhatAttack()
     {
-        LayerMask attack = LayerMask.GetMask("PlayerLevelUp");
-        RaycastHit2D attackhit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f, attack);
-        RaycastHit2D hipphit = Physics2D.Raycast(transform.position, vec.normalized, 3f, attack);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 4.5f, attack);
-        Debug.DrawRay(transform.position, vec.normalized, Color.red, 1.5f);
-        Debug.DrawRay(transform.position, vec.normalized, Color.red, 3f);
-        Debug.DrawRay(transform.position, vec.normalized, Color.red, 4.5f);
-        if (hit.collider != null)
+        if (isattack == true)
         {
-            StartCoroutine(Attack());
+            LayerMask attack = LayerMask.GetMask("PlayerLevelUp");
+            RaycastHit2D attackhit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f, attack);
+            RaycastHit2D hipphit = Physics2D.Raycast(transform.position, vec.normalized, 3f, attack);
+            RaycastHit2D vechit = Physics2D.Raycast(transform.position, vec.normalized, 4.5f, attack);
+            Debug.DrawRay(transform.position, vec.normalized, Color.red, 1.5f);
+            Debug.DrawRay(transform.position, vec.normalized, Color.yellow, 3f);
+            Debug.DrawRay(transform.position, vec.normalized, Color.green, 4.5f);
+            if (attackhit.collider != null)
+            {
+                StartCoroutine(Attack());
+            }
+            else if (hipphit.collider != null)
+            {
+                StartCoroutine(Hipp());
+            }
+            else if (vechit.collider != null)
+            {
+                StartCoroutine(Dash());
+            }
         }
-        else if (hipphit.collider != null)
-        {
-        }
+    }
+
+    private IEnumerator Dash()
+    {
+        yield return new WaitForSeconds(2.5f);
+        rigid.linearVelocity = new Vector2(dashdir, 0) * dashpower;
+        StartCoroutine(Cooltime());
+    }
+
+    public IEnumerator Hipp()
+    {
+        AttackStop();
+        ani.SetBool("attack", true);
+        yield return new WaitForSeconds(2.5f);
+        AttackMove();
+        ani.SetBool("attack", false);
+        StartCoroutine(Cooltime());
     }
 
     public IEnumerator Attack()
     {
-        speed = 0f;
-        rigid.linearVelocity = Vector2.zero;
+        AttackStop();
         ani.SetBool("attack", true);
-        yield return
-        speed = 2f;
-        rigid.linearVelocity = vec.normalized * speed;
+        yield return new WaitForSeconds(2.5f);
+        AttackMove();
         ani.SetBool("attack", false);
+        StartCoroutine(Cooltime());
+    }
+
+    public IEnumerator Cooltime()
+    {
+        isattack = false;
+        yield return new WaitForSeconds(2f);
+        isattack = true;
     }
 
     void locate()
@@ -73,5 +107,17 @@ public class Boss : MonoBehaviour
         {
             ani.SetBool("run", false);
         }
+    }
+
+    void AttackStop()
+    {
+        speed = 0f;
+        rigid.linearVelocity = Vector2.zero;
+    }
+
+    void AttackMove()
+    {
+        speed = 2f;
+        rigid.linearVelocity = vec.normalized * speed;
     }
 }
