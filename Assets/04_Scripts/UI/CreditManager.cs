@@ -24,7 +24,7 @@ public class CreditManager : MonoBehaviour
         panelUI.SetActive(false);
     }
 
-    void ExitPanel()
+    public void ExitPanel()
     {
         Application.Quit();
     }
