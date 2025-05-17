@@ -12,6 +12,7 @@ public class CreditManager : MonoBehaviour
         panelUI.SetActive(false);
         optionButton.onClick.AddListener(OpenPanel);
         closeButton.onClick.AddListener(ClosePanel);
+        exitButton.onClick.AddListener(ExitPanel);
     }
 
     void OpenPanel()
