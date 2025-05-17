@@ -6,6 +6,8 @@ public class PauseManager : MonoBehaviour
 {
     public GameObject pausePanel;
     public Slider volumeSlider;
+    [SerializeField] private Button reStrBtn;
+    [SerializeField] private Button quitBtn;
 
     private bool isPaused = false;
 
@@ -13,6 +15,8 @@ public class PauseManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         volumeSlider.onValueChanged.AddListener(SetVolume);
+        reStrBtn.onClick.AddListener(ResumeGame);
+        quitBtn.onClick.AddListener(QuitGame);
     }
 
     void Update()
