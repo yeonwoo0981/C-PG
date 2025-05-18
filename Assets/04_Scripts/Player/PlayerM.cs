@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerM : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 3f;
+    [SerializeField] private float jumpForce = 100f;
     private Vector2 moveDir;
     private Rigidbody2D rb;
     private Animator animator;
@@ -16,36 +14,36 @@ public class PlayerM : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        
+
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.playerController = this;
 
-            
+
             hp = (int)PlayerManager.Instance.currentHp;
             damage = PlayerManager.Instance.damage;
         }
     }
 
-   
-    
+
+
 
     private void Update()
     {
-        
+
         float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
 
-        
+
         if (Input.GetMouseButton(0))
         {
             Debug.Log("누름");
-            Sword.SetActive(true);
+            //   Sword.SetActive(true);
         }
         else
         {
             Debug.Log("안누름");
-            Sword.SetActive(false);
+            //Sword.SetActive(false);
         }
     }
 
@@ -53,7 +51,7 @@ public class PlayerM : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            
+
             if (PlayerManager.Instance != null)
             {
                 PlayerManager.Instance.isGrounded = true;
@@ -104,7 +102,7 @@ public class PlayerM : MonoBehaviour
 
     public void OnJump()
     {
-        
+
         int maxJumpCount = PlayerManager.Instance != null ? PlayerManager.Instance.jumpCount : 1;
         float jumpPower = PlayerManager.Instance != null ? PlayerManager.Instance.jumpForce : 3f;
 
@@ -115,7 +113,7 @@ public class PlayerM : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
-            
+
             ++jumpCount;
             if (PlayerManager.Instance != null)
             {
@@ -124,7 +122,7 @@ public class PlayerM : MonoBehaviour
         }
     }
 
-    
+
     public bool isGround
     {
         get { return PlayerManager.Instance != null ? PlayerManager.Instance.isGrounded : false; }
