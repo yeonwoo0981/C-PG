@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/01_Scenes/LoadingScene.unity
     guid: b90e27caa5a7fd542b98dddb492c39fa
   - enabled: 1
+    path: Assets/01_Scenes/FlashbackScene.unity
+    guid: 49934866e66db864c8360078c0a5bb4d
+  - enabled: 1
     path: Assets/01_Scenes/1-1.unity
     guid: b6346d7c66c3f4e45bb65b4237e1cda4
   - enabled: 1
