@@ -2700,6 +2700,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 760477642}
     m_Modifications:
+    - target: {fileID: 422294012608173690, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 668103524235159357, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2788,6 +2792,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2389000520741251181, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821877786738531858, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821877786738531858, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: efee20b64d1e73942a29ba61ce3379c3, type: 3}
     - target: {fileID: 4990096874370029858, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2819,6 +2835,30 @@ PrefabInstance:
     - target: {fileID: 5557393722055708703, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748233738335260596, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426420202060829417, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426420202060829417, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: efee20b64d1e73942a29ba61ce3379c3, type: 3}
+    - target: {fileID: 7426420202060829417, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426420202060829417, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426420202060829417, guid: 1fc3dfa8b0b2d734c93ff4ade823eef1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

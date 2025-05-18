@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -12,6 +12,7 @@ public class FlashBack : MonoBehaviour
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogueText;
     public GameObject[] progressDots;
+    public GameObject blackBackground;
 
     [Header("Settings")]
     public float textDisplayTime = 5f;
@@ -22,9 +23,10 @@ public class FlashBack : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource audioSource;
-    public AudioClip[] voiceClips; 
+    
 
-    private string[] flashbackTexts = {
+    private string[] flashbackTexts = 
+    {
         "내 이름은 서준.",
         "내가 사는 곳인 벨모로우시에 어느 날 좀비 바이러스가 퍼지게 되었다.",
         "지금까지 집에 잘 숨어 있었지만 식량이 떨어져서 집을 떠나 벨모로우시를 탈출해야 하는 상황이다.",
@@ -48,6 +50,9 @@ public class FlashBack : MonoBehaviour
     void InitializeComponents()
     {
         
+        flashbackCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        flashbackCanvas.sortingOrder = 1000; 
+
         canvasGroup = flashbackCanvas.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
             canvasGroup = flashbackCanvas.gameObject.AddComponent<CanvasGroup>();
@@ -56,14 +61,30 @@ public class FlashBack : MonoBehaviour
         if (speechBubbleGroup == null)
             speechBubbleGroup = speechBubble.AddComponent<CanvasGroup>();
 
-        
         canvasGroup.alpha = 1f;
         speechBubbleGroup.alpha = 0f;
+
+        
+        if (blackBackground != null)
+        {
+            blackBackground.SetActive(true);
+            CanvasGroup bgGroup = blackBackground.GetComponent<CanvasGroup>();
+            if (bgGroup == null)
+                bgGroup = blackBackground.AddComponent<CanvasGroup>();
+            bgGroup.alpha = 1f;
+        }
+
+        
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            mainCamera.enabled = false;
+        }
 
         if (speakerNameText != null)
             speakerNameText.text = "서준";
 
-        
+       
         UpdateProgressDots();
     }
 
@@ -80,16 +101,18 @@ public class FlashBack : MonoBehaviour
             if (dialogueText != null)
                 dialogueText.text = flashbackTexts[currentTextIndex];
 
+            
 
-           
+            
             UpdateProgressDots();
 
            
             yield return StartCoroutine(FadeCanvasGroup(speechBubbleGroup, 0f, 1f, fadeInTime));
 
+            
             yield return new WaitForSeconds(textDisplayTime - fadeInTime - fadeOutTime);
 
-           
+            
             yield return StartCoroutine(FadeCanvasGroup(speechBubbleGroup, 1f, 0f, fadeOutTime));
 
             
@@ -97,10 +120,9 @@ public class FlashBack : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
         }
 
-       
         yield return new WaitForSeconds(finalPauseTime);
 
-       
+        
         TransitionToNextScene();
     }
 
@@ -143,14 +165,7 @@ public class FlashBack : MonoBehaviour
         }
     }
 
-    void PlayVoiceClip(int index)
-    {
-        if (audioSource != null && voiceClips != null && index < voiceClips.Length && voiceClips[index] != null)
-        {
-            audioSource.clip = voiceClips[index];
-            audioSource.Play();
-        }
-    }
+  
 
     void TransitionToNextScene()
     {
@@ -163,13 +178,29 @@ public class FlashBack : MonoBehaviour
     IEnumerator TransitionCoroutine()
     {
         
-        yield return StartCoroutine(FadeCanvasGroup(canvasGroup, 1f, 0f, 1f));
+        yield return StartCoroutine(FadeCanvasGroup(speechBubbleGroup, 1f, 0f, 0.5f));
 
         
+        if (progressDots != null)
+        {
+            foreach (GameObject dot in progressDots)
+            {
+                CanvasGroup dotGroup = dot.GetComponent<CanvasGroup>();
+                if (dotGroup != null)
+                {
+                    StartCoroutine(FadeCanvasGroup(dotGroup, dotGroup.alpha, 0f, 0.5f));
+                }
+            }
+        }
+
+        
+       
+
+       
         SceneManager.LoadScene(3);
     }
 
-   
+  
 
     public void SkipFlashback()
     {
@@ -180,11 +211,22 @@ public class FlashBack : MonoBehaviour
         }
     }
 
-    
-    [ContextMenu("Test Flashback")]
-    void TestFlashback()
+    void OnDestroy()
     {
-        StartFlashbackSequence();
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            mainCamera.enabled = true;
+        }
+    }
+
+    void OnDisable()
+    {
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            mainCamera.enabled = true;
+        }
     }
 
     
@@ -216,7 +258,6 @@ public class ProgressDot : MonoBehaviour
         color.a = isActive ? 0.8f : 0.4f;
         image.color = color;
 
-        
         float scale = isActive ? 1f : 0.8f;
         rectTransform.localScale = Vector3.one * scale;
     }
