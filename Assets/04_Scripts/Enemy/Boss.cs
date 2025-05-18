@@ -23,6 +23,7 @@ public class Boss : MonoBehaviour
     public void FixedUpdate()
     {
         dashdir = transform.position.x;
+        vec = (player.transform.position - transform.position).normalized;
         locate();
         AnimationRun();
         WhatAttack();
