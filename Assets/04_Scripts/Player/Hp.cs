@@ -1,7 +1,7 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections;
 public class Hp : MonoBehaviour
 {
     [Header("HP UI Elements")]
@@ -25,7 +25,7 @@ public class Hp : MonoBehaviour
             PlayerManager.Instance.hpController = this;
         }
 
-        
+
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
 
@@ -70,7 +70,7 @@ public class Hp : MonoBehaviour
         Debug.Log($"플레이어 체력: {_curHealth}");
         UpdateHpText();
 
-        
+
         if (_curHealth <= 0 && !isDead)
         {
             isDead = true;
@@ -82,32 +82,32 @@ public class Hp : MonoBehaviour
     {
         Debug.Log("플레이어 사망!");
 
-        
+
         Time.timeScale = 0.5f;
 
-        
+
         if (staticEffectCanvasGroup != null && staticEffectImage != null)
         {
             StartCoroutine(StaticEffect());
         }
 
-       
+
         if (staticAudioSource != null)
         {
             staticAudioSource.Play();
         }
 
-        
+
         yield return new WaitForSecondsRealtime(gameOverDelay);
 
-        
+
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
             StartCoroutine(FadeInGameOverUI());
         }
 
-        
+
         Time.timeScale = 1f;
     }
 
@@ -120,10 +120,10 @@ public class Hp : MonoBehaviour
         {
             timer += Time.unscaledDeltaTime;
 
-            
+
             float intensity = Mathf.Lerp(0f, 1f, timer / duration);
 
-            
+
             if (staticEffectImage != null)
             {
                 Color color = staticEffectImage.color;
@@ -131,7 +131,7 @@ public class Hp : MonoBehaviour
                 staticEffectImage.color = color;
             }
 
-            
+
             if (staticEffectCanvasGroup != null)
             {
                 staticEffectCanvasGroup.alpha = intensity * Random.Range(0.5f, 1f);
@@ -140,7 +140,7 @@ public class Hp : MonoBehaviour
             yield return null;
         }
 
-        
+
         if (staticEffectCanvasGroup != null)
             staticEffectCanvasGroup.alpha = 1f;
     }
@@ -168,7 +168,7 @@ public class Hp : MonoBehaviour
 
         gameOverCanvasGroup.alpha = 1f;
 
-        
+
         if (staticEffectCanvasGroup != null)
         {
             StartCoroutine(FadeOutStaticEffect());
@@ -193,13 +193,13 @@ public class Hp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("EnemyAttact"))
         {
             Damage();
         }
     }
 
-    
+
     public void ResetHP()
     {
         isDead = false;

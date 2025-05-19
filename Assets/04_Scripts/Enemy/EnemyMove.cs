@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
@@ -45,18 +46,26 @@ public class EnemyMove : MonoBehaviour
 
         if (hit.collider != null)
         {
-            speed = 0f;
-            rigid.linearVelocity = Vector2.zero;
-            ani.SetBool("attack", true);
-            attackprefab.SetActive(true);
+            StartCoroutine(NomalAttack());
         }
         else
         {
             speed = 2f;
             rigid.linearVelocity = vec.normalized * speed;
-            ani.SetBool("attack", false);
-            attackprefab.SetActive(false);
         }
+    }
+
+    private IEnumerator NomalAttack()
+    {
+        speed = 0f;
+        rigid.linearVelocity = Vector2.zero;
+        ani.SetBool("attack", true);
+        attackprefab.SetActive(true);
+        yield return new WaitForSeconds(0.7f);
+        speed = 2f;
+        rigid.linearVelocity = vec.normalized * speed;
+        ani.SetBool("attack", false);
+        attackprefab.SetActive(false);
     }
 
     void AnimationRun()

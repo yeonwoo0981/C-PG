@@ -34,8 +34,8 @@ public class Boss : MonoBehaviour
         if (isattack == true)
         {
             LayerMask attack = LayerMask.GetMask("PlayerLevelUp");
-            RaycastHit2D attackhit = Physics2D.Raycast(transform.position, vec, 3f, attack);
-            Debug.DrawRay(transform.position, vec, Color.red, 3f);
+            RaycastHit2D attackhit = Physics2D.Raycast(transform.position, Vector2.right * vec, 3f, attack);
+            Debug.DrawRay(transform.position, Vector2.right * vec, Color.red, 3f);
             if (attackhit.collider != null)
             {
                 Attack();

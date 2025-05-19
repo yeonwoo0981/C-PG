@@ -1,7 +1,6 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
 
 public class PlayerM : MonoBehaviour
 {
@@ -36,7 +35,7 @@ public class PlayerM : MonoBehaviour
     {
         float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
-
+        // isAttact = true / false
         if (Input.GetMouseButtonDown(0))
         {
             Sword.SetActive(true);
