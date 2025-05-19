@@ -347,12 +347,12 @@ MonoBehaviour:
   speakerNameText: {fileID: 2134373150}
   dialogueText: {fileID: 1215646988}
   progressDots: []
+  blackBackground: {fileID: 0}
   textDisplayTime: 7
   fadeInTime: 0.5
   fadeOutTime: 0.5
   finalPauseTime: 3.5
   audioSource: {fileID: 554212088}
-  voiceClips: []
 --- !u!4 &554212087
 Transform:
   m_ObjectHideFlags: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6970009332512345554, guid: 8c92595394c843549afa774450a04975, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
