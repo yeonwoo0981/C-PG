@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour
     private Vector2 vec;
     private Animator ani;
     private GameObject player;
+    [SerializeField] private GameObject Nomalattackeffect;
 
     private bool isattack = true;
     private float speed = 4f;
@@ -17,6 +18,7 @@ public class Boss : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        Nomalattackeffect.SetActive(false);
     }
 
     public void FixedUpdate()
@@ -61,8 +63,10 @@ public class Boss : MonoBehaviour
         isattack = false;
         AttackStop();
         ani.SetBool("attack", true);
+        Nomalattackeffect.SetActive(true);
         yield return new WaitForSeconds(0.6f);
         ani.SetBool("attack", false);
+        Nomalattackeffect.SetActive(false);
         AttackMove();
         isattack = true;
     }
