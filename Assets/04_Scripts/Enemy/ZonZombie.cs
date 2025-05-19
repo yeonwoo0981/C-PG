@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public class ZonZombie : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigid;
     private float speed = 2f;
@@ -39,8 +39,8 @@ public class EnemyMove : MonoBehaviour
     void Attack()
     {
         LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
-        Debug.DrawRay(transform.position, vec.normalized, Color.red, 1.5f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f, layer);
+        Debug.DrawRay(transform.position, vec.normalized, Color.yellow, 3f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 3f, layer);
 
         if (hit.collider != null)
         {
@@ -59,11 +59,10 @@ public class EnemyMove : MonoBehaviour
         rigid.linearVelocity = Vector2.zero;
         ani.SetBool("attack", true);
         attackprefab.SetActive(true);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1f);
         speed = 2f;
         rigid.linearVelocity = vec.normalized * speed;
         ani.SetBool("attack", false);
         attackprefab.SetActive(false);
     }
 }
-

@@ -193,7 +193,7 @@ public class Hp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyAttact"))
+        if (collision.CompareTag("EnemyAttack"))
         {
             Damage();
         }
