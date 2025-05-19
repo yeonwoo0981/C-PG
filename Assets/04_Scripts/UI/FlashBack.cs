@@ -13,6 +13,7 @@ public class FlashBack : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public GameObject[] progressDots;
     public GameObject blackBackground;
+    public GameObject skipButton;
 
     [Header("Settings")]
     public float textDisplayTime = 5f;
