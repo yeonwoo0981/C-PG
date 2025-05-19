@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6416864958784494232}
   - component: {fileID: 1301740141812196127}
   - component: {fileID: 8949348814157604908}
-  - component: {fileID: 2697182679184444404}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -104,7 +103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -129,7 +128,7 @@ Animator:
   m_GameObject: {fileID: 1919543712882428175}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 65a593cde56e9244bb868fcacf0b93b3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6b79fef77a24ca84f9dbd1e3c188227a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -175,17 +174,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0016666651, y: -0.9468303}
+  m_Offset: {x: 0.02188921, y: -0.58298874}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 2.0625}
+    oldSize: {x: 1.625, y: 2}
     newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2532537, y: 0.81807476}
+  m_Size: {x: 1.4564712, y: 0.82267827}
   m_EdgeRadius: 0
 --- !u!114 &8949348814157604908
 MonoBehaviour:
@@ -199,17 +198,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f58294a7bed77b48a9cb11a02c62128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
---- !u!114 &2697182679184444404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919543712882428175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6465e7cf02c160642ac0b705a3fcacc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  e_HP: 20
+  rigid: {fileID: 7912621786190501202}

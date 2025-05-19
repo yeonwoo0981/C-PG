@@ -1,6 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Hp : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class Hp : MonoBehaviour
 
     private void Awake()
     {
-        
+
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.hpController = this;
@@ -19,7 +19,7 @@ public class Hp : MonoBehaviour
 
     private void Start()
     {
-        
+
         if (PlayerManager.Instance != null)
         {
             _curHealth = PlayerManager.Instance.currentHp;
@@ -43,11 +43,11 @@ public class Hp : MonoBehaviour
         if (_curHealth <= 0)
             return;
 
-        
+
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.TakeDamage(5f);
-            _curHealth = PlayerManager.Instance.currentHp; 
+            _curHealth = PlayerManager.Instance.currentHp;
         }
         else
         {
@@ -61,13 +61,13 @@ public class Hp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("EnemyAttack"))
         {
             Damage();
         }
     }
 
-    
+
     public float _curHealth
     {
         get { return PlayerManager.Instance != null ? PlayerManager.Instance.currentHp : 100f; }

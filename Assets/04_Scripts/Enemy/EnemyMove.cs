@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour
     private float speed = 2f;
     private Vector2 vec;
     private GameObject player;
+    [SerializeField] private GameObject attackprefab;
 
     private Animator ani;
     //private float attackrange = 2f;
@@ -15,6 +16,7 @@ public class EnemyMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        attackprefab.SetActive(false);
     }
 
     public void Update()
@@ -46,12 +48,14 @@ public class EnemyMove : MonoBehaviour
             speed = 0f;
             rigid.linearVelocity = Vector2.zero;
             ani.SetBool("attack", true);
+            attackprefab.SetActive(true);
         }
         else
         {
             speed = 2f;
             rigid.linearVelocity = vec.normalized * speed;
             ani.SetBool("attack", false);
+            attackprefab.SetActive(false);
         }
     }
 
