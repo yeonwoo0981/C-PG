@@ -70,11 +70,11 @@ public class PlayerManager : MonoBehaviour
             hpController = player.GetComponent<Hp>();
 
             
-            GameObject staminaUI = GameObject.FindGameObjectWithTag("StaminaUI");
-            if (staminaUI != null)
+            //GameObject staminaUI = GameObject.FindGameObjectWithTag("StaminaUI");
+            /*if (staminaUI != null)
             {
                 staminaController = staminaUI.GetComponent<StmScript>();
-            }
+            }*/
         }
     }
 

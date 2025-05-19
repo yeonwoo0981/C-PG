@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerM : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class PlayerM : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     public GameObject Sword;
+    public float currentTime;
 
     private void Awake()
     {
@@ -23,6 +26,7 @@ public class PlayerM : MonoBehaviour
             hp = (int)PlayerManager.Instance.currentHp;
             damage = PlayerManager.Instance.damage;
         }
+        Sword.SetActive(false);
     }
 
 
@@ -30,28 +34,26 @@ public class PlayerM : MonoBehaviour
 
     private void Update()
     {
-
         float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            Sword.SetActive(true);
+            StartCoroutine(SwordTrue());
+        }
+    }
 
-        if (Input.GetMouseButton(0))
-        {
-            Debug.Log("누름");
-            //   Sword.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("안누름");
-            //Sword.SetActive(false);
-        }
+    private IEnumerator SwordTrue()
+    {
+        yield return new WaitForSeconds(1f);
+        Sword.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-
             if (PlayerManager.Instance != null)
             {
                 PlayerManager.Instance.isGrounded = true;
