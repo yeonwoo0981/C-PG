@@ -167,8 +167,8 @@ MonoBehaviour:
     y: 0
     width: 805.3333
     height: 458.66666
-  m_MinSize: {x: 201, y: 226}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 470.6667
     height: 462
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -999,9 +999,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -1275.091, y: 143.16653, z: -8.591985}
+    m_Target: {x: 258.42355, y: 654.9949, z: -7.707508}
     speed: 2
-    m_Value: {x: -1275.091, y: 143.16653, z: -8.591985}
+    m_Value: {x: 258.42355, y: 654.9949, z: -7.707508}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1051,9 +1051,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1531.1602
+    m_Target: 780.75134
     speed: 2
-    m_Value: 1531.1602
+    m_Value: 780.75134
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1128,18 +1128,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a654ffff7e56ffffa256ffffb256ffff7259ffff085effff2c5efffffc5fffff386effff586effff6e6effff9e6fffff6673ffff8a73ffff9a73ffff2476ffff96c8ffffe8cbffff64cdffff60cfffff78eaffff28f7ffff0cfbffff4eb400008eb40000a8b40000b6b400004cb6000068b60000a4b60000b0bf0000bec100002eef000012f200004cf20000e4f6000032fa0000
+      m_ExpandedIDs: 02c1fffffcc4ffff44d6ffffe2d8ffff7cddffff2cecffff14edffffc4edffffdef6ffff0cfbffff8abd00009ebd0000d4bd0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: PausePanel
-        m_OriginalName: PausePanel
+        m_Name: existlog_0
+        m_OriginalName: existlog_0
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -35942
+        m_UserData: 48536
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -1216,24 +1216,24 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 68b30000
-    m_LastClickedID: 45928
-    m_ExpandedIDs: 0000000004b3000006b3000008b300000ab300000cb300000eb3000010b3000012b30000b0b3000026d2000052d200009ad20000bed20000ced20000dcd20000bcd30000dcd3000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 35}
+    m_SelectedIDs: 22b40000
+    m_LastClickedID: 46114
+    m_ExpandedIDs: 00000000a8b30000aab30000acb30000aeb30000b0b30000b2b30000b4b30000b6b30000b8b30000bab30000bcb30000beb30000c0b30000c2b30000c4b30000c6b30000c8b3000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: SeoulHangangRiver
-      m_OriginalName: SeoulHangangRiver
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 45960
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 11}
@@ -1248,7 +1248,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000004b3000006b3000008b300000ab300000cb300000eb3000010b3000012b30000
+    m_ExpandedIDs: 00000000a8b30000aab30000acb30000aeb30000b0b30000b2b30000b4b30000b6b30000b8b30000bab30000bcb30000beb30000c0b30000c2b30000c4b30000c6b30000c8b30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1294,7 +1294,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 7}
+      m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0

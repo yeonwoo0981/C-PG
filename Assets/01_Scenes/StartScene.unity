@@ -1737,11 +1737,12 @@ RectTransform:
   - {fileID: 930581728}
   - {fileID: 471651311}
   - {fileID: 265123010}
+  - {fileID: 1688415887}
   m_Father: {fileID: 1555988392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -272}
+  m_AnchoredPosition: {x: 0, y: -369}
   m_SizeDelta: {x: 299.0518, y: 51.5488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400413582
@@ -2057,7 +2058,6 @@ RectTransform:
   - {fileID: 1682708525}
   - {fileID: 1400413581}
   - {fileID: 2083673343}
-  - {fileID: 1688415887}
   - {fileID: 1494726417}
   - {fileID: 992826423}
   - {fileID: 1445118006}
@@ -2106,7 +2106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -76}
+  m_AnchoredPosition: {x: 0, y: -148}
   m_SizeDelta: {x: 313.5818, y: 97.9095}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682708526
@@ -2228,16 +2228,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688415886}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1555988392}
+  m_Father: {fileID: 1400413581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -212}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688415888
@@ -2660,7 +2660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 195.18933}
+  m_AnchoredPosition: {x: 0, y: 267}
   m_SizeDelta: {x: 700.4907, y: 195.9479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083673344
@@ -2710,8 +2710,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130
-  m_fontSizeBase: 130
+  m_fontSize: 160
+  m_fontSizeBase: 160
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2821,11 +2821,11 @@ PrefabInstance:
     - target: {fileID: 8963236169387206051, guid: 3d4a4de3124dc4247bb728b0a733e0f1, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: c69040305bc5676458e1e738d3cb1666, type: 3}
+      objectReference: {fileID: 8300000, guid: 0756239ad6c07a6408d0da1dee5f3d15, type: 3}
     - target: {fileID: 8963236169387206051, guid: 3d4a4de3124dc4247bb728b0a733e0f1, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: c69040305bc5676458e1e738d3cb1666, type: 3}
+      objectReference: {fileID: 8300000, guid: 0756239ad6c07a6408d0da1dee5f3d15, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
