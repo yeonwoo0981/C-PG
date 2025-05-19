@@ -9,6 +9,7 @@ TagManager:
   - Sword
   - noOpenUI
   - PanelUI
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
