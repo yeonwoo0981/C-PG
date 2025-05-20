@@ -36,7 +36,7 @@ public class PlayerM : MonoBehaviour
         float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
         // isAttact = true / false
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Sword.SetActive(true);
             StartCoroutine(SwordTrue());

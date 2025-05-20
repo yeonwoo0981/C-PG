@@ -10,6 +10,7 @@ TagManager:
   - noOpenUI
   - PanelUI
   - EnemyAttack
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
