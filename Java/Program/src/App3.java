@@ -1,12 +1,28 @@
+
+
 public class App3 {
-    public static void main(String[] args) throws Exception {
-    String weeks[] = {"월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"};
-    int cnt = 1;
-    for (int i = 1; i < 7; i++){
-        if (i%3 == 0)
-        break;
-        cnt++;
-    }
-    System.out.print("오늘은 " + weeks[cnt]);
+    public static void main(String[] args) {
+      int arr1[] = {3, 5, 9, 2, 5, 4};
+      atest at = new atest();
+      int arr2[] = at.rw(arr1);
+      at.pa(arr2);
     }
 }
+
+class atest {
+    int[] rw(int[] a) {
+        int len = a.length;
+        int b[] = new int[len];
+        for (int i = 0; i < len; i++)
+        b[i] = a[len - i - 1];
+        return b;
+    }
+    void pa(int[] arr) {
+for(int i = 0; i < arr.length; i++) {
+    System.out.print(arr[i]);
+}
+    }
+}
+
+
+
