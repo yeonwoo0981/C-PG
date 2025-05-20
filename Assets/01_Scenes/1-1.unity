@@ -3271,11 +3271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3297349775147781235, guid: 8214f81234dd55f4c94228efb0e42c7e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.8087
+      value: 1.8087158
       objectReference: {fileID: 0}
     - target: {fileID: 3297349775147781235, guid: 8214f81234dd55f4c94228efb0e42c7e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.8086
+      value: 1.8085938
       objectReference: {fileID: 0}
     - target: {fileID: 3344637646389995451, guid: 8214f81234dd55f4c94228efb0e42c7e, type: 3}
       propertyPath: m_Name
@@ -3856,14 +3856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: zombie 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3874794745180325772, guid: 612d94715fd66f0448dcee09774db8de, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -7073422281892841307, guid: 087e4fd3cc0b8a84db4f87bac2df55b8, type: 3}
-    - target: {fileID: 6416864958784494232, guid: 612d94715fd66f0448dcee09774db8de, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 75f0614eae1cd314b8702b28be4e37c4, type: 2}
     - target: {fileID: 6514291808406940880, guid: 612d94715fd66f0448dcee09774db8de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.592227
