@@ -24,7 +24,7 @@ public class ZonZombieAttack : MonoBehaviour
 
     private void Update()
     {
-        transform.position += vec * speed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position + (Vector3)new Vector2(0, 0.5f), 2 * Time.deltaTime);
         locate();
     }
 
@@ -39,6 +39,10 @@ public class ZonZombieAttack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
