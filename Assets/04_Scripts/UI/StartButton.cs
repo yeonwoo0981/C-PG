@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class StartButton : MonoBehaviour
 {
     public Slider volumeSlider;
-
+    public Button startButton;
 
     void Start()
     {
@@ -13,6 +13,7 @@ public class StartButton : MonoBehaviour
         {
             volumeSlider.value = PlayerPrefs.GetFloat("GameVolume", 0.5f);
             volumeSlider.onValueChanged.AddListener(SetVolume);
+            startButton.onClick.AddListener(StartGame);
         }
     }
 
@@ -25,7 +26,7 @@ public class StartButton : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene(1);
     }
 
 }

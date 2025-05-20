@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Hp : MonoBehaviour
 {
     [Header("HP UI Elements")]
@@ -13,11 +14,17 @@ public class Hp : MonoBehaviour
     [SerializeField] private CanvasGroup staticEffectCanvasGroup;
     [SerializeField] private Image staticEffectImage;
     [SerializeField] private AudioSource staticAudioSource;
+    [SerializeField] private StaticEffect staticEffectScript;
     [SerializeField] private float gameOverDelay = 2f;
+
+    [Header("Game Over Buttons")]
+    [SerializeField] private Button restartBtn;
+    [SerializeField] private Button titleBtn;
 
     private EnemyDamage _enemyDamage;
     private bool isDead = false;
 
+    [System.Obsolete]
     private void Awake()
     {
         if (PlayerManager.Instance != null)
@@ -27,10 +34,26 @@ public class Hp : MonoBehaviour
 
 
         if (gameOverUI != null)
+        {
             gameOverUI.SetActive(false);
+            Debug.Log("GameOver UI 초기화 완료");
+        }
+        else
+        {
+            Debug.LogWarning("GameOver UI가 할당되지 않았습니다!");
+        }
+
 
         if (staticEffectCanvasGroup != null)
+        {
             staticEffectCanvasGroup.alpha = 0f;
+        }
+
+
+        if (staticEffectScript == null)
+        {
+            staticEffectScript = FindObjectOfType<StaticEffect>();
+        }
     }
 
     private void Start()
@@ -41,6 +64,17 @@ public class Hp : MonoBehaviour
             _maxHealth = PlayerManager.Instance.maxHp;
         }
         UpdateHpText();
+
+
+        if (restartBtn != null)
+        {
+            restartBtn.onClick.AddListener(RestartGame);
+        }
+
+        if (titleBtn != null)
+        {
+            titleBtn.onClick.AddListener(GoToTitle);
+        }
     }
 
     public void UpdateHpText()
@@ -70,10 +104,11 @@ public class Hp : MonoBehaviour
         Debug.Log($"플레이어 체력: {_curHealth}");
         UpdateHpText();
 
-
+        // 체력이 0 이하가 되었을 때
         if (_curHealth <= 0 && !isDead)
         {
             isDead = true;
+            Debug.Log("플레이어 사망 처리 시작!");
             StartCoroutine(HandlePlayerDeath());
         }
     }
@@ -86,33 +121,47 @@ public class Hp : MonoBehaviour
         Time.timeScale = 0.5f;
 
 
+        if (staticEffectScript != null)
+        {
+            staticEffectScript.StartStaticEffect();
+            Debug.Log("StaticEffect 시작");
+        }
+
         if (staticEffectCanvasGroup != null && staticEffectImage != null)
         {
             StartCoroutine(StaticEffect());
+            Debug.Log("CanvasGroup StaticEffect 시작");
         }
 
 
         if (staticAudioSource != null)
         {
             staticAudioSource.Play();
+            Debug.Log("스태틱 오디오 재생");
         }
 
 
+        Debug.Log($"게임오버 딜레이 {gameOverDelay}초 대기 중...");
         yield return new WaitForSecondsRealtime(gameOverDelay);
 
 
         if (gameOverUI != null)
         {
+            Debug.Log("게임오버 UI 활성화");
             gameOverUI.SetActive(true);
             StartCoroutine(FadeInGameOverUI());
         }
+        else
+        {
+            Debug.LogError("게임오버 UI가 null입니다!");
+        }
 
 
-        Time.timeScale = 1f;
     }
 
     private IEnumerator StaticEffect()
     {
+        Debug.Log("StaticEffect 코루틴 시작");
         float duration = gameOverDelay;
         float timer = 0f;
 
@@ -143,6 +192,8 @@ public class Hp : MonoBehaviour
 
         if (staticEffectCanvasGroup != null)
             staticEffectCanvasGroup.alpha = 1f;
+
+        Debug.Log("StaticEffect 완료");
     }
 
     private IEnumerator FadeInGameOverUI()
@@ -159,6 +210,7 @@ public class Hp : MonoBehaviour
         float duration = 1.5f;
         float timer = 0f;
 
+        Debug.Log("게임오버 UI 페이드인 시작");
         while (timer < duration)
         {
             timer += Time.unscaledDeltaTime;
@@ -167,6 +219,17 @@ public class Hp : MonoBehaviour
         }
 
         gameOverCanvasGroup.alpha = 1f;
+        Debug.Log("게임오버 UI 페이드인 완료");
+
+
+        Time.timeScale = 0f;
+        Debug.Log("게임 시간 정지");
+
+
+        if (staticEffectScript != null)
+        {
+            staticEffectScript.StopStaticEffect();
+        }
 
 
         if (staticEffectCanvasGroup != null)
@@ -199,7 +262,6 @@ public class Hp : MonoBehaviour
         }
     }
 
-
     public void ResetHP()
     {
         isDead = false;
@@ -220,6 +282,13 @@ public class Hp : MonoBehaviour
 
         if (staticEffectCanvasGroup != null)
             staticEffectCanvasGroup.alpha = 0f;
+
+        if (staticEffectScript != null)
+            staticEffectScript.StopStaticEffect();
+
+
+        Time.timeScale = 1f;
+        Debug.Log("HP 리셋 완료, 게임 시간 재개");
     }
 
     public float _curHealth
@@ -232,5 +301,42 @@ public class Hp : MonoBehaviour
     {
         get { return PlayerManager.Instance != null ? PlayerManager.Instance.maxHp : 100f; }
         set { if (PlayerManager.Instance != null) PlayerManager.Instance.maxHp = value; }
+    }
+
+    
+    public void RestartGame()
+    {
+        Debug.Log("게임 다시시작");
+
+        
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.currentHp = PlayerManager.Instance.maxHp;
+            Debug.Log($"PlayerManager 체력 초기화: {PlayerManager.Instance.currentHp}/{PlayerManager.Instance.maxHp}");
+        }
+
+        
+        Time.timeScale = 1f;
+
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GoToTitle()
+    {
+        Debug.Log("타이틀 화면으로 이동");
+
+        
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.currentHp = PlayerManager.Instance.maxHp;
+            Debug.Log("PlayerManager 체력 초기화 완료");
+        }
+
+        
+        Time.timeScale = 1f;
+
+        
+        SceneManager.LoadScene(0);
     }
 }
