@@ -1,8 +1,8 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class Hp : MonoBehaviour
 {
     [Header("HP UI Elements")]
@@ -23,6 +23,7 @@ public class Hp : MonoBehaviour
 
     private EnemyDamage _enemyDamage;
     private bool isDead = false;
+    private bool isattacked = false;
 
     [System.Obsolete]
     private void Awake()
@@ -240,10 +241,21 @@ public class Hp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyAttack"))
+        if (isattacked == false)
         {
-            Damage();
+            if (collision.CompareTag("EnemyAttack"))
+            {
+                Damage();
+                StartCoroutine(AttackedCooltime());
+            }
         }
+    }
+
+    private IEnumerator AttackedCooltime()
+    {
+        isattacked = true;
+        yield return new WaitForSeconds(0.25f);
+        isattacked = false;
     }
 
     public void ResetHP()
@@ -286,37 +298,37 @@ public class Hp : MonoBehaviour
         set { if (PlayerManager.Instance != null) PlayerManager.Instance.maxHp = value; }
     }
 
-    
+
     public void RestartGame()
     {
 
-        
+
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.currentHp = PlayerManager.Instance.maxHp;
             Debug.Log($"PlayerManager 체력 초기화: {PlayerManager.Instance.currentHp}/{PlayerManager.Instance.maxHp}");
         }
 
-        
+
         Time.timeScale = 1f;
 
-        
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToTitle()
     {
 
-        
+
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.currentHp = PlayerManager.Instance.maxHp;
         }
 
-        
+
         Time.timeScale = 1f;
 
-        
+
         SceneManager.LoadScene(0);
     }
 }

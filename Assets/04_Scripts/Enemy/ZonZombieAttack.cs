@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class ZonZombieAttack : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rigid;
     private float speed = 2f;
-    private Vector2 vec;
+    private Vector3 vec;
     private GameObject player;
-    private Transform zombie;
+    [SerializeField] private GameObject zombie;
 
     private void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        transform.position = player.transform.position;
+        vec = player.transform.position - transform.position;
+        vec.Normalize();
+        Instantiate(this, zombie.transform.position, Quaternion.identity);
     }
 
     private void Update()
     {
+        transform.position += vec * speed * Time.deltaTime;
         locate();
     }
 

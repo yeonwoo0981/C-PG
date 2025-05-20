@@ -14,6 +14,7 @@ public class ZonZombie : MonoBehaviour
     private bool isattack = true;
     private void Awake()
     {
+        rigid.linearDamping = 100f;
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -28,6 +29,14 @@ public class ZonZombie : MonoBehaviour
     {
         locate();
         Attack();
+        if (isattack == false)
+        {
+            ani.SetBool("idle", true);
+        }
+        else
+        {
+            ani.SetBool("idle", false);
+        }
     }
 
     void locate()
@@ -64,8 +73,6 @@ public class ZonZombie : MonoBehaviour
         ani.SetBool("attack", true);
         attackprefab.SetActive(true);
         yield return new WaitForSeconds(1f);
-        speed = 2f;
-        rigid.linearVelocity = vec.normalized * speed;
         ani.SetBool("attack", false);
         attackprefab.SetActive(false);
         StartCoroutine(Cooltime());
