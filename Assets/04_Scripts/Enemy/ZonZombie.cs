@@ -8,6 +8,7 @@ public class ZonZombie : MonoBehaviour
     private Vector2 vec;
     private GameObject player;
     [SerializeField] private GameObject attackprefab;
+    private GameObject attackprefab1;
 
     private Animator ani;
     private float range;
@@ -18,7 +19,6 @@ public class ZonZombie : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        attackprefab.SetActive(false);
     }
 
     public void Update()
@@ -71,10 +71,12 @@ public class ZonZombie : MonoBehaviour
         speed = 0f;
         rigid.linearVelocity = Vector2.zero;
         ani.SetBool("attack", true);
-        attackprefab.SetActive(true);
+        if (attackprefab1 == null)
+        {
+            attackprefab1 = Instantiate(attackprefab, transform.position, Quaternion.identity);
+        }
         yield return new WaitForSeconds(1f);
         ani.SetBool("attack", false);
-        attackprefab.SetActive(false);
         StartCoroutine(Cooltime());
     }
 
@@ -83,13 +85,5 @@ public class ZonZombie : MonoBehaviour
         isattack = false;
         yield return new WaitForSeconds(3f);
         isattack = true;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            attackprefab.SetActive(false);
-        }
     }
 }
