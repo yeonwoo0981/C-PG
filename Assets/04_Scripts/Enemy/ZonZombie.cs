@@ -11,6 +11,7 @@ public class ZonZombie : MonoBehaviour
 
     private Animator ani;
     private float range;
+    private bool isattack = true;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -38,18 +39,21 @@ public class ZonZombie : MonoBehaviour
     }
     void Attack()
     {
-        LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
-        Debug.DrawRay(transform.position, Vector2.right * vec, Color.yellow, 3f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 3f, layer);
+        if (isattack == true)
+        {
+            LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
+            Debug.DrawRay(transform.position, Vector2.right * vec, Color.yellow, 3f);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 3f, layer);
 
-        if (hit.collider != null)
-        {
-            StartCoroutine(NomalAttack());
-        }
-        else
-        {
-            speed = 2f;
-            rigid.linearVelocity = vec.normalized * speed;
+            if (hit.collider != null)
+            {
+                StartCoroutine(NomalAttack());
+            }
+            else
+            {
+                speed = 2f;
+                rigid.linearVelocity = vec.normalized * speed;
+            }
         }
     }
 
@@ -64,7 +68,16 @@ public class ZonZombie : MonoBehaviour
         rigid.linearVelocity = vec.normalized * speed;
         ani.SetBool("attack", false);
         attackprefab.SetActive(false);
+        StartCoroutine(Cooltime());
     }
+
+    private IEnumerator Cooltime()
+    {
+        isattack = false;
+        yield return new WaitForSeconds(3f);
+        isattack = true;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
