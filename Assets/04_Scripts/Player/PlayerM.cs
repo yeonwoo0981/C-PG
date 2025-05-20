@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerM : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 100f;
+    [SerializeField] private float jumpForce = 8.5f;
     private Vector2 moveDir;
     private Rigidbody2D rb;
     private Animator animator;

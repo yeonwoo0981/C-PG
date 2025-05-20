@@ -65,4 +65,11 @@ public class ZonZombie : MonoBehaviour
         ani.SetBool("attack", false);
         attackprefab.SetActive(false);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            attackprefab.SetActive(false);
+        }
+    }
 }

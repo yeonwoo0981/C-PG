@@ -23,10 +23,10 @@ public class SwordDamage : MonoBehaviour
         {
             transform.position = player.position - offset;
         }
-        else
+        /*else
         {
             transform.position = player.position + offset;
-        }
+        }*/
     }
     void Update()
     {

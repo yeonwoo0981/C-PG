@@ -59,7 +59,7 @@ public class EnemyMove : MonoBehaviour
         rigid.linearVelocity = Vector2.zero;
         ani.SetBool("attack", true);
         attackprefab.SetActive(true);
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         speed = 2f;
         rigid.linearVelocity = vec.normalized * speed;
         ani.SetBool("attack", false);

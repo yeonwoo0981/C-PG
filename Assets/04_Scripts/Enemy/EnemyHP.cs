@@ -14,7 +14,7 @@ public class EnemyHP : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !E_isDead)
+        if (collision.gameObject.CompareTag("PlayerAttack") && !E_isDead)
         {
             MinusHP();
 

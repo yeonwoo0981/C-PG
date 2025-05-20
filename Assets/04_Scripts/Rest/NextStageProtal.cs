@@ -9,7 +9,7 @@ public class NextStagePortal : MonoBehaviour
     [SerializeField] private GameObject noOpenUI;
     [SerializeField] private GameObject panelUI;
     [SerializeField] private GameObject transitionPanel; 
-    [SerializeField] private float transitionSpeed = 2000f; 
+    [SerializeField] private float transitionSpeed = 2000f;     
     [SerializeField] private float delayBetweenTransitions = 5f; 
 
     private bool portalActive = false;

@@ -9,8 +9,8 @@ public class BGMManager : MonoBehaviour
     private void Start()
     {
        _bgmSource.volume = 1.5f;
-       _Slider.value = _bgmSource.volume;  
-       _Slider.onValueChanged.AddListener(ChangeVolume);
+       //_Slider.value = _bgmSource.volume = 5;  
+       //_Slider.onValueChanged.AddListener(ChangeVolume);
     }
 
     private void ChangeVolume(float value)

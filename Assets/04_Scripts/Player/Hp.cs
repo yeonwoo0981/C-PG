@@ -108,14 +108,12 @@ public class Hp : MonoBehaviour
         if (_curHealth <= 0 && !isDead)
         {
             isDead = true;
-            Debug.Log("플레이어 사망 처리 시작!");
             StartCoroutine(HandlePlayerDeath());
         }
     }
 
     private IEnumerator HandlePlayerDeath()
     {
-        Debug.Log("플레이어 사망!");
 
 
         Time.timeScale = 0.5f;
@@ -124,36 +122,27 @@ public class Hp : MonoBehaviour
         if (staticEffectScript != null)
         {
             staticEffectScript.StartStaticEffect();
-            Debug.Log("StaticEffect 시작");
         }
 
         if (staticEffectCanvasGroup != null && staticEffectImage != null)
         {
             StartCoroutine(StaticEffect());
-            Debug.Log("CanvasGroup StaticEffect 시작");
         }
 
 
         if (staticAudioSource != null)
         {
             staticAudioSource.Play();
-            Debug.Log("스태틱 오디오 재생");
         }
 
 
-        Debug.Log($"게임오버 딜레이 {gameOverDelay}초 대기 중...");
         yield return new WaitForSecondsRealtime(gameOverDelay);
 
 
         if (gameOverUI != null)
         {
-            Debug.Log("게임오버 UI 활성화");
             gameOverUI.SetActive(true);
             StartCoroutine(FadeInGameOverUI());
-        }
-        else
-        {
-            Debug.LogError("게임오버 UI가 null입니다!");
         }
 
 
@@ -161,7 +150,6 @@ public class Hp : MonoBehaviour
 
     private IEnumerator StaticEffect()
     {
-        Debug.Log("StaticEffect 코루틴 시작");
         float duration = gameOverDelay;
         float timer = 0f;
 
@@ -193,7 +181,6 @@ public class Hp : MonoBehaviour
         if (staticEffectCanvasGroup != null)
             staticEffectCanvasGroup.alpha = 1f;
 
-        Debug.Log("StaticEffect 완료");
     }
 
     private IEnumerator FadeInGameOverUI()
@@ -210,7 +197,6 @@ public class Hp : MonoBehaviour
         float duration = 1.5f;
         float timer = 0f;
 
-        Debug.Log("게임오버 UI 페이드인 시작");
         while (timer < duration)
         {
             timer += Time.unscaledDeltaTime;
@@ -219,11 +205,9 @@ public class Hp : MonoBehaviour
         }
 
         gameOverCanvasGroup.alpha = 1f;
-        Debug.Log("게임오버 UI 페이드인 완료");
 
 
         Time.timeScale = 0f;
-        Debug.Log("게임 시간 정지");
 
 
         if (staticEffectScript != null)
@@ -288,7 +272,6 @@ public class Hp : MonoBehaviour
 
 
         Time.timeScale = 1f;
-        Debug.Log("HP 리셋 완료, 게임 시간 재개");
     }
 
     public float _curHealth
@@ -306,7 +289,6 @@ public class Hp : MonoBehaviour
     
     public void RestartGame()
     {
-        Debug.Log("게임 다시시작");
 
         
         if (PlayerManager.Instance != null)
@@ -324,13 +306,11 @@ public class Hp : MonoBehaviour
 
     public void GoToTitle()
     {
-        Debug.Log("타이틀 화면으로 이동");
 
         
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.currentHp = PlayerManager.Instance.maxHp;
-            Debug.Log("PlayerManager 체력 초기화 완료");
         }
 
         
