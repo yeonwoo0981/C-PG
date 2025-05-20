@@ -39,8 +39,8 @@ public class ZonZombie : MonoBehaviour
     void Attack()
     {
         LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
-        Debug.DrawRay(transform.position, vec.normalized, Color.yellow, 3f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 3f, layer);
+        Debug.DrawRay(transform.position, Vector2.right * vec, Color.yellow, 3f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 3f, layer);
 
         if (hit.collider != null)
         {
@@ -67,7 +67,7 @@ public class ZonZombie : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             attackprefab.SetActive(false);
         }

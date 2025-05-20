@@ -39,8 +39,8 @@ public class EnemyMove : MonoBehaviour
     void Attack()
     {
         LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
-        Debug.DrawRay(transform.position, vec.normalized, Color.red, 1.5f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, vec.normalized, 1.5f, layer);
+        Debug.DrawRay(transform.position, Vector2.right * vec, Color.red, 1.5f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 1.5f, layer);
 
         if (hit.collider != null)
         {
