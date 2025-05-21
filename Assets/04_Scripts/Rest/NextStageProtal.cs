@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class NextStagePortal : MonoBehaviour
 {
@@ -29,14 +27,10 @@ public class NextStagePortal : MonoBehaviour
             return;
         }
 
-<<<<<<< HEAD
         if (transitionPanel == null)
         {
             return;
         }
-=======
-        
->>>>>>> 6a460167cc0637a7733256beb6addaa780253a63
 
         panelRectTransform = transitionPanel.GetComponent<RectTransform>();
 
@@ -47,7 +41,7 @@ public class NextStagePortal : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            
+
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
