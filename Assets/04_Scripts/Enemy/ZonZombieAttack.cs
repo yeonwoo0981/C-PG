@@ -7,12 +7,14 @@ public class ZonZombieAttack : MonoBehaviour
     private Vector3 vec;
     private GameObject player;
     [SerializeField] private GameObject zombie;
+    private Vector3 aaa;
 
     private void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         vec = player.transform.position - transform.position;
         vec.Normalize();
+        aaa = player.transform.position;
         StartCoroutine(Cooltime());
     }
 
@@ -24,8 +26,12 @@ public class ZonZombieAttack : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position + (Vector3)new Vector2(0, 0.5f), 2 * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, aaa + (Vector3)new Vector2(0, 0.5f), 2 * Time.deltaTime);
         locate();
+        if (Vector3.Distance(transform.position, aaa + new Vector3(0, 0.5f, 0)) < 0.01f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void locate()
