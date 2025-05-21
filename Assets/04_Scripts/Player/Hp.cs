@@ -17,6 +17,17 @@ public class Hp : MonoBehaviour
     [SerializeField] private StaticEffect staticEffectScript;
     [SerializeField] private float gameOverDelay = 2f;
 
+    [Header("Damage Vignette Effect")]
+    [SerializeField] private Image damageVignetteImage; 
+    [SerializeField] private float fadeInSpeed = 5f;    
+    [SerializeField] private float fadeOutSpeed = 2f;   
+    [SerializeField] private float maxAlpha = 0.8f;     
+    [SerializeField] private AudioSource damageAudioSource;   
+
+    private float currentAlpha = 0f;
+    private bool isFading = false;
+    private Coroutine fadeCoroutine;
+
     [Header("Game Over Buttons")]
     [SerializeField] private Button restartBtn;
     [SerializeField] private Button titleBtn;
@@ -53,7 +64,16 @@ public class Hp : MonoBehaviour
 
         if (staticEffectScript == null)
         {
-            staticEffectScript = FindObjectOfType<StaticEffect>();
+            staticEffectScript = FindAnyObjectByType<StaticEffect>();
+        }
+
+        
+        if (damageVignetteImage != null)
+        {
+            Color color = damageVignetteImage.color;
+            color.a = 0f;
+            damageVignetteImage.color = color;
+            currentAlpha = 0f;
         }
     }
 
@@ -105,11 +125,74 @@ public class Hp : MonoBehaviour
         Debug.Log($"플레이어 체력: {_curHealth}");
         UpdateHpText();
 
-        // 체력이 0 이하가 되었을 때
+        
+        ShowDamageVignette();
+
+        
         if (_curHealth <= 0 && !isDead)
         {
             isDead = true;
             StartCoroutine(HandlePlayerDeath());
+        }
+    }
+
+    
+    private void ShowDamageVignette()
+    {
+        
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+
+       
+        fadeCoroutine = StartCoroutine(FadeDamageEffect());
+
+        
+        if (damageAudioSource != null && !damageAudioSource.isPlaying)
+        {
+            damageAudioSource.Play();
+        }
+    }
+
+   
+    private IEnumerator FadeDamageEffect()
+    {
+        
+        isFading = true;
+        while (currentAlpha < maxAlpha)
+        {
+            currentAlpha += fadeInSpeed * Time.deltaTime;
+            if (currentAlpha > maxAlpha) currentAlpha = maxAlpha;
+
+            UpdateDamageAlpha();
+            yield return null;
+        }
+
+        
+        yield return new WaitForSeconds(0.1f);
+
+        
+        while (currentAlpha > 0)
+        {
+            currentAlpha -= fadeOutSpeed * Time.deltaTime;
+            if (currentAlpha < 0) currentAlpha = 0;
+
+            UpdateDamageAlpha();
+            yield return null;
+        }
+
+        isFading = false;
+    }
+
+    
+    private void UpdateDamageAlpha()
+    {
+        if (damageVignetteImage != null)
+        {
+            Color color = damageVignetteImage.color;
+            color.a = currentAlpha;
+            damageVignetteImage.color = color;
         }
     }
 
@@ -282,6 +365,19 @@ public class Hp : MonoBehaviour
         if (staticEffectScript != null)
             staticEffectScript.StopStaticEffect();
 
+        
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
+
+        currentAlpha = 0f;
+        if (damageVignetteImage != null)
+        {
+            Color color = damageVignetteImage.color;
+            color.a = 0f;
+            damageVignetteImage.color = color;
+        }
 
         Time.timeScale = 1f;
     }
