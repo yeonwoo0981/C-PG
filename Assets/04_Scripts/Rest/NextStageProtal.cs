@@ -29,17 +29,7 @@ public class NextStagePortal : MonoBehaviour
             return;
         }
 
-        if (transitionPanel == null)
-        {
-            transitionPanel = GameObject.Find("Panel").gameObject;
-            Debug.Log("Transition panel assigned via code: " + (transitionPanel != null));
-        }
-
-        if (transitionPanel == null)
-        {
-            Debug.LogError("Scene transition panel is not assigned in the inspector!");
-            return;
-        }
+        
 
         panelRectTransform = transitionPanel.GetComponent<RectTransform>();
 
