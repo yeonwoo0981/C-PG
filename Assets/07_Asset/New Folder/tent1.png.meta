@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9ae36734bf1a6a74c89bd89e55ccb7ee
+guid: 3d75dfecbb8e9c341bd5c8ad3be6c8ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6940745034712120977
-    second: "2025\uB144 5\uC6D4 21\uC77C \uC624\uC804 12_13_24_0"
+      213: 7971693864858392174
+    second: tent1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "2025\uB144 5\uC6D4 21\uC77C \uC624\uC804 12_13_24_0"
+      name: tent1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 6
+        y: 18
+        width: 54
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f618d612a258daf90800000000000000
-      internalID: -6940745034712120977
+      spriteID: e669b01955521ae60800000000000000
+      internalID: 7971693864858392174
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "2025\uB144 5\uC6D4 21\uC77C \uC624\uC804 12_13_24_0": -6940745034712120977
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
