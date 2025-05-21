@@ -19,7 +19,7 @@ public class SceneChanger1 : MonoBehaviour
         progressBar.value = 0f;
 
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("1-2");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("EndingScene");
         asyncLoad.allowSceneActivation = false;
 
         while (asyncLoad.progress < 0.9f)
