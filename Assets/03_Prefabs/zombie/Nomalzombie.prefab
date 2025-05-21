@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemyAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 580808149970778348, guid: d9e5bf62e0c9fac4daba75511668ed77, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3961805703743772932, guid: d9e5bf62e0c9fac4daba75511668ed77, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.7992083

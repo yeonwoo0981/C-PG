@@ -4,6 +4,7 @@ using System.Collections;
 public class Sword : MonoBehaviour
 {
     public GameObject sword;
+    public GameObject gun;
     private void Awake()
     {
         sword.SetActive(false);
@@ -16,6 +17,7 @@ public class Sword : MonoBehaviour
             StartCoroutine(SwordTrue());
         }
     }
+
     private IEnumerator SwordTrue()
     {
         yield return new WaitForSeconds(1f);

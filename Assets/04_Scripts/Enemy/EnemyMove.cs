@@ -14,7 +14,6 @@ public class EnemyMove : MonoBehaviour
 
     private void Awake()
     {
-        rigid.linearDamping = 25;
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -32,10 +31,13 @@ public class EnemyMove : MonoBehaviour
         if (isattack == false)
         {
             ani.SetBool("idle", true);
+            rigid.linearVelocity = Vector2.zero;
+            rigid.linearDamping = 100f;
         }
         else
         {
             ani.SetBool("idle", false);
+            rigid.linearDamping = 0f;
         }
     }
 
@@ -68,15 +70,14 @@ public class EnemyMove : MonoBehaviour
 
     private IEnumerator NomalAttack()
     {
-        speed = 0f;
-        rigid.linearVelocity = Vector2.zero;
         ani.SetBool("attack", true);
         attackprefab.SetActive(true);
+        rigid.linearVelocity = Vector2.zero;
+        rigid.linearDamping = 100f;
         yield return new WaitForSeconds(jujuj);
-        speed = 2f;
-        rigid.linearVelocity = vec.normalized * speed;
         ani.SetBool("attack", false);
         attackprefab.SetActive(false);
+        rigid.linearDamping = 0f;
         StartCoroutine(Cooltime());
     }
 
@@ -85,6 +86,8 @@ public class EnemyMove : MonoBehaviour
         isattack = false;
         yield return new WaitForSeconds(2f);
         isattack = true;
+        speed = 2f;
+        rigid.linearVelocity = vec.normalized * speed;
     }
 }
 

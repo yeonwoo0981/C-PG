@@ -29,7 +29,14 @@ public class NextStagePortal : MonoBehaviour
             return;
         }
 
+<<<<<<< HEAD
+        if (transitionPanel == null)
+        {
+            return;
+        }
+=======
         
+>>>>>>> 6a460167cc0637a7733256beb6addaa780253a63
 
         panelRectTransform = transitionPanel.GetComponent<RectTransform>();
 
@@ -200,12 +207,10 @@ public class NextStagePortal : MonoBehaviour
         if (enemyes.Length == 0)
         {
             portalActive = true;
-            CancelInvoke("CheckEnemy");
             if (noOpenUI != null)
                 noOpenUI.SetActive(false);
             if (panelUI != null)
                 panelUI.SetActive(true);
-            Debug.Log("Æ÷Å» ¿ÀÇÂ");
         }
     }
 
@@ -216,7 +221,6 @@ public class NextStagePortal : MonoBehaviour
             if (portalActive && !isTransitioning)
             {
                 StartCoroutine(PlayExitAnimation());
-                Debug.Log("»êÀ¸·Î ÀÌµ¿");
                 if (panelUI != null)
                     panelUI.SetActive(false);
                 if (noOpenUI != null)
@@ -229,7 +233,6 @@ public class NextStagePortal : MonoBehaviour
                     noOpenUI.SetActive(true);
                     StartCoroutine(HideNoOpenUIAfterDelay(3f));
                 }
-                Debug.Log("Æ÷Å» ¹Ì¿ÀÇÂ");
             }
         }
     }
