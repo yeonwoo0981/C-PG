@@ -25,7 +25,7 @@ public class PlayerM : MonoBehaviour
             hp = (int)PlayerManager.Instance.currentHp;
             damage = PlayerManager.Instance.damage;
         }
-        Sword.SetActive(false);
+        
     }
 
 
@@ -35,18 +35,6 @@ public class PlayerM : MonoBehaviour
     {
         float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
         transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
-        // isAttact = true / false
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Sword.SetActive(true);
-            StartCoroutine(SwordTrue());
-        }
-    }
-
-    private IEnumerator SwordTrue()
-    {
-        yield return new WaitForSeconds(1f);
-        Sword.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

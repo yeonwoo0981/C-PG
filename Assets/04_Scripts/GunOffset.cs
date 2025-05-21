@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GunOffset : MonoBehaviour
 {
@@ -26,13 +27,25 @@ public class GunOffset : MonoBehaviour
 
         lr.material = lineMaterial;
         lr.positionCount = 2;
-        lr.startWidth = 0.1f;
-        lr.endWidth = 0.1f;
+        lr.startWidth = 0.03f;  // 초기 너비
+        lr.endWidth = 0.03f;
         lr.useWorldSpace = true;
 
         lr.SetPosition(0, startPoint);
         lr.SetPosition(1, mouseWorldPos);
 
-        Destroy(lineObj, 2f);
+        StartCoroutine(UpdateLineWidthAfterDelay(lr, 0.075f, 0.1f));
+
+        Destroy(lineObj, 0.2f);
+    }
+
+    IEnumerator UpdateLineWidthAfterDelay(LineRenderer lr, float delay, float newWidth)
+    {
+        yield return new WaitForSeconds(delay);
+        if (lr != null)
+        {
+            lr.startWidth = newWidth;
+            lr.endWidth = newWidth;
+        }
     }
 }
