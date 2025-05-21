@@ -9,16 +9,17 @@ public class Dash : MonoBehaviour
     private Animator ani;
     private float currentTime = 0;
     private bool isCanUseDash = true;
+    [SerializeField] private GameObject dasheffect;
 
-    
+
     public StmScript _stmscript;
 
     private void Awake()
     {
         ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        dasheffect.SetActive(false);
 
-        
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.dashController = this;
@@ -27,7 +28,7 @@ public class Dash : MonoBehaviour
 
     private void Start()
     {
-        
+
         if (_stmscript == null)
         {
             GameObject staminaUI = GameObject.FindGameObjectWithTag("StaminaUI");
@@ -40,14 +41,14 @@ public class Dash : MonoBehaviour
 
     private void Update()
     {
-        
+
         float coolTime = PlayerManager.Instance != null ? PlayerManager.Instance.dashCoolTime : 1.5f;
         float c_TimeMax = 10f;
 
         currentTime += Time.deltaTime;
         currentTime = Mathf.Clamp(currentTime, 0f, c_TimeMax);
 
-        
+
         if (Keyboard.current.shiftKey.wasPressedThisFrame && isCanUseDash)
         {
             if (coolTime > currentTime)
@@ -57,7 +58,7 @@ public class Dash : MonoBehaviour
             }
             else if (coolTime < currentTime)
             {
-                
+
                 float requiredStamina = 30f;
                 float currentStamina = PlayerManager.Instance != null ?
                     PlayerManager.Instance.currentStamina :
@@ -71,8 +72,9 @@ public class Dash : MonoBehaviour
 
                 isCanUseDash = false;
                 ani.SetBool("isDashng", true);
+                dasheffect.SetActive(true);
 
-                
+
                 float dashPower = PlayerManager.Instance != null ? PlayerManager.Instance.dashPower : 12f;
                 rb.linearVelocity = new Vector2(dashdir, 0) * dashPower;
 
@@ -81,14 +83,14 @@ public class Dash : MonoBehaviour
             }
         }
 
-        
+
         if (_stmscript != null)
         {
             _stmscript.stm_gaugePlus();
         }
         else if (PlayerManager.Instance != null)
         {
-            
+
             PlayerManager.Instance.RecoverStamina(5f * Time.deltaTime);
         }
     }
@@ -100,27 +102,28 @@ public class Dash : MonoBehaviour
 
     private IEnumerator EndVelocity()
     {
-        
+
         float dashTime = PlayerManager.Instance != null ? PlayerManager.Instance.dashTime : 0.4f;
         yield return new WaitForSeconds(dashTime);
 
         rb.linearVelocity = Vector2.zero;
         ani.SetBool("isDashng", false);
+        dasheffect.SetActive(false);
         isCanUseDash = true;
 
-        
+
         if (_stmscript != null)
         {
             _stmscript.stm_gaugeMin();
         }
         else if (PlayerManager.Instance != null)
         {
-            
+
             PlayerManager.Instance.UseStamina(30f);
         }
     }
 
-    
+
     public float power
     {
         get { return PlayerManager.Instance != null ? PlayerManager.Instance.dashPower : 12f; }

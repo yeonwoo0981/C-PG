@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f21793444c280ca4daf73e78c0ae3a1e
+guid: c673cfdaef51af541b7cfa8b34b503e6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4340143670946724112
-    second: box1_0
+      213: 6209244385591345343
+    second: barri_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: box1_0
+      name: barri_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 41
+        width: 96
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01970f47ca94b3c30800000000000000
-      internalID: 4340143670946724112
+      spriteID: fb0c2c6eedaab2650800000000000000
+      internalID: 6209244385591345343
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      box1_0: 4340143670946724112
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
