@@ -25,9 +25,15 @@ public class Ending : MonoBehaviour
     public AudioSource audioSource;
 
     [Header("Visual Effects")]
-    public Image backgroundImage;        
-    public Image characterImage;         
-    public GameObject[] visualEffects;   
+    public Image backgroundImage;
+    public Image characterImage;
+    public GameObject[] visualEffects;
+
+    [Header("Credits")]
+    public GameObject creditsPanel; 
+    public RectTransform creditsTransform; 
+    public float creditsScrollSpeed = 50f;
+    public float creditsDuration = 20f;
 
     private string[] endingTexts =
     {
@@ -102,9 +108,11 @@ public class Ending : MonoBehaviour
 
         UpdateProgressDots();
 
-        
         if (creditsButton != null)
             creditsButton.SetActive(false);
+
+        if (creditsPanel != null)
+            creditsPanel.SetActive(false);
     }
 
     void StartEndingSequence()
@@ -114,44 +122,31 @@ public class Ending : MonoBehaviour
 
     IEnumerator EndingCoroutine()
     {
-        
         if (backgroundImage != null && backgroundGroup != null)
             yield return StartCoroutine(FadeCanvasGroup(backgroundGroup, 0f, 1f, fadeInTime * 1.5f));
 
         if (characterImage != null && characterGroup != null)
             yield return StartCoroutine(FadeCanvasGroup(characterGroup, 0f, 1f, fadeInTime));
 
-        
         ActivateVisualEffects(true);
 
-        
         for (currentTextIndex = 0; currentTextIndex < endingTexts.Length; currentTextIndex++)
         {
             if (dialogueText != null)
                 dialogueText.text = endingTexts[currentTextIndex];
 
-            
             PlayTextAudio(currentTextIndex);
-
             UpdateProgressDots();
 
-           
             yield return StartCoroutine(FadeCanvasGroup(speechBubbleGroup, 0f, 1f, fadeInTime));
-
-           
             yield return new WaitForSeconds(textDisplayTime - fadeInTime - fadeOutTime);
-
-            
             yield return StartCoroutine(FadeCanvasGroup(speechBubbleGroup, 1f, 0f, fadeOutTime));
 
-            
             if (currentTextIndex < endingTexts.Length - 1)
                 yield return new WaitForSeconds(0.5f);
 
-            
             if (currentTextIndex >= endingTexts.Length - 3 && backgroundImage != null)
             {
-                
                 Color currentColor = backgroundImage.color;
                 float targetBrightness = 1.0f + (endingTexts.Length - currentTextIndex) * 0.1f;
                 backgroundImage.color = new Color(
@@ -163,21 +158,9 @@ public class Ending : MonoBehaviour
             }
         }
 
-        
         yield return new WaitForSeconds(finalPauseTime);
 
-        
-        if (creditsButton != null)
-        {
-            creditsButton.SetActive(true);
-            CanvasGroup creditsGroup = creditsButton.GetComponent<CanvasGroup>();
-            if (creditsGroup == null)
-                creditsGroup = creditsButton.AddComponent<CanvasGroup>();
-
-            yield return StartCoroutine(FadeCanvasGroup(creditsGroup, 0f, 1f, fadeInTime));
-        }
-
-        
+        ShowCredits(); 
     }
 
     IEnumerator FadeCanvasGroup(CanvasGroup group, float startAlpha, float endAlpha, float duration)
@@ -220,9 +203,8 @@ public class Ending : MonoBehaviour
 
     void PlayTextAudio(int textIndex)
     {
-        
         if (audioSource == null || !audioSource.isActiveAndEnabled) return;
-
+        
     }
 
     void ActivateVisualEffects(bool activate)
@@ -247,7 +229,6 @@ public class Ending : MonoBehaviour
 
     IEnumerator TransitionToCredits()
     {
-        
         if (speechBubbleGroup != null)
             StartCoroutine(FadeCanvasGroup(speechBubbleGroup, speechBubbleGroup.alpha, 0f, fadeOutTime));
 
@@ -257,7 +238,6 @@ public class Ending : MonoBehaviour
         if (backgroundGroup != null)
             StartCoroutine(FadeCanvasGroup(backgroundGroup, backgroundGroup.alpha, 0f, fadeOutTime));
 
-        
         if (progressDots != null)
         {
             foreach (GameObject dot in progressDots)
@@ -270,10 +250,36 @@ public class Ending : MonoBehaviour
             }
         }
 
-       
         yield return new WaitForSeconds(fadeOutTime + 0.5f);
 
-       
+        
+        StartCoroutine(PlayCreditsScroll());
+    }
+
+    IEnumerator PlayCreditsScroll()
+    {
+        if (creditsPanel == null || creditsTransform == null)
+            yield break;
+
+        creditsPanel.SetActive(true);
+
+        Vector2 startPos = creditsTransform.anchoredPosition;
+        float totalHeight = creditsTransform.rect.height + 800f;
+        Vector2 endPos = startPos + new Vector2(0, totalHeight);
+
+        float elapsed = 0f;
+
+        while (elapsed < creditsDuration)
+        {
+            float t = elapsed / creditsDuration;
+            creditsTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        creditsTransform.anchoredPosition = endPos;
+
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(0); 
     }
 
