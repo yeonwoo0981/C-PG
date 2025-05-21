@@ -1,17 +1,27 @@
 using UnityEngine;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 public class GunOffset : MonoBehaviour
 {
     public Material lineMaterial;
-
+    public EnemyHP enemyHP;
+    public float coolTime;
     private Vector3 offset = new Vector3(0f, 1f, 0f);  // 목표 1: 항상 기준이 되는 위치 오프셋
-
+    private void Awake()
+    {
+        coolTime = 1.5f;
+    }
     void Update()
     {
+        coolTime += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
-            DrawLineToMouse();
+            if(coolTime > 1.5f)
+            {
+                DrawLineToMouse();
+                coolTime = 0;
+            }
         }
     }
 
@@ -46,6 +56,14 @@ public class GunOffset : MonoBehaviour
         {
             lr.startWidth = newWidth;
             lr.endWidth = newWidth;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            enemyHP.MinusHP();
         }
     }
 }

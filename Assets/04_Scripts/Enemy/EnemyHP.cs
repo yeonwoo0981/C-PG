@@ -28,7 +28,7 @@ public class EnemyHP : MonoBehaviour
 
     public void MinusHP()
     {
-        e_HP -= 5;
+        e_HP -= 10;
         Debug.Log($"Enemy HP: {e_HP}");
     }
 
