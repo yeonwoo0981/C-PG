@@ -1040,37 +1040,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &656540220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 656540221}
-  m_Layer: 0
-  m_Name: Triangle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &656540221
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656540220}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.142, y: -0.797, z: 0}
-  m_LocalScale: {x: 0.29986802, y: 0.30978936, z: 0.33333334}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1564532956}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760477638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,7 +1058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &760477639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,13 +1857,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 6416864958784494232, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bb3af32ab1291cf43a389ae238e6acf9, type: 2}
     - target: {fileID: 6514291808406940880, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5852985
+      value: 18.63
       objectReference: {fileID: 0}
     - target: {fileID: 6514291808406940880, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1932,24 +1897,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6707588130210841315, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
-      propertyPath: m_Name
-      value: a
-      objectReference: {fileID: 0}
-    - target: {fileID: 8023395281157045623, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.067
-      objectReference: {fileID: 0}
-    - target: {fileID: 8949348814157604908, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
-      propertyPath: fott
-      value: 
-      objectReference: {fileID: 656540221}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6514291808406940880, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 656540221}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
 --- !u!224 &1181636910 stripped
@@ -2552,11 +2502,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d4a4de3124dc4247bb728b0a733e0f1, type: 3}
---- !u!4 &1564532956 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6514291808406940880, guid: 31f3758483a292246b5d5d8d32f82789, type: 3}
-  m_PrefabInstance: {fileID: 988682563}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1641703254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,7 +3705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7679479301740085923, guid: 6c9ad43b3eec02640a1e250ca3a17d47, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3914,7 +3859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5271753478577979836, guid: aca348d8a6df33f48a9cf0c247dc1de9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8382843281924656867, guid: aca348d8a6df33f48a9cf0c247dc1de9, type: 3}
       propertyPath: m_Name
