@@ -5,6 +5,7 @@ public class WeaponManager : MonoBehaviour
 {
     public GameObject gun;
     public GameObject sword;
+    [SerializeField] private UIManager uIManager;
     private void Awake()
     {
         gun.SetActive(false);
@@ -14,13 +15,15 @@ public class WeaponManager : MonoBehaviour
     {
         if(Keyboard.current.qKey.wasPressedThisFrame)
         {
-            gun.SetActive(true);
             sword.SetActive(false);
+            gun.SetActive(true);
+            uIManager.OnGun();
         }
         else if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             gun.SetActive(false);
             sword.SetActive(true);
+            uIManager.OnSword();
         }
     }
 }

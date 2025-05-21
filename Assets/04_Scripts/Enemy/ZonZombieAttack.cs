@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ZonZombieAttack : MonoBehaviour
 {
-    private float speed = 4f;
     private Vector3 vec;
     private GameObject player;
     [SerializeField] private GameObject zombie;

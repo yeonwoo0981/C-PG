@@ -30,16 +30,8 @@ public class NextStagePortal : MonoBehaviour
             return;
         }
 
-
         if (transitionPanel == null)
         {
-            transitionPanel = GameObject.Find("Panel").gameObject;
-            Debug.Log("Transition panel assigned via code: " + (transitionPanel != null));
-        }
-
-        if (transitionPanel == null)
-        {
-            Debug.LogError("Scene transition panel is not assigned in the inspector!");
             return;
         }
 
@@ -205,12 +197,10 @@ public class NextStagePortal : MonoBehaviour
         if (enemyes.Length == 0)
         {
             portalActive = true;
-            CancelInvoke("CheckEnemy");
             if (noOpenUI != null)
                 noOpenUI.SetActive(false);
             if (panelUI != null)
                 panelUI.SetActive(true);
-            Debug.Log("Æ÷Å» ¿ÀÇÂ");
         }
     }
 
@@ -222,7 +212,6 @@ public class NextStagePortal : MonoBehaviour
             {
                 
                 StartCoroutine(PlayExitAnimation());
-                Debug.Log("»êÀ¸·Î ÀÌµ¿");
                 if (panelUI != null)
                     panelUI.SetActive(false);
                 if (noOpenUI != null)
@@ -235,7 +224,6 @@ public class NextStagePortal : MonoBehaviour
                     noOpenUI.SetActive(true);
                     StartCoroutine(HideNoOpenUIAfterDelay(3f));
                 }
-                Debug.Log("Æ÷Å» ¹Ì¿ÀÇÂ");
             }
         }
     }
