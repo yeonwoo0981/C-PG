@@ -130,7 +130,7 @@ Animator:
   m_GameObject: {fileID: 1919543712882428175}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46af643fb52b33646a950177f257543e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 07b05d94e7c60904398d36f5ce53f015, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 7912621786190501202}
   attackprefab: {fileID: 8760411526194831968}
+  jujuj: 0.7
 --- !u!114 &2697182679184444404
 MonoBehaviour:
   m_ObjectHideFlags: 0
