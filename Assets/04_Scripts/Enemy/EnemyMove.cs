@@ -8,11 +8,13 @@ public class EnemyMove : MonoBehaviour
     private Vector2 vec;
     private GameObject player;
     [SerializeField] private GameObject attackprefab;
-
+    [SerializeField] private float jujuj;
     private Animator ani;
-    private float range;
+    private bool isattack = true;
+
     private void Awake()
     {
+        rigid.linearDamping = 25;
         rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -27,6 +29,14 @@ public class EnemyMove : MonoBehaviour
     {
         locate();
         Attack();
+        if (isattack == false)
+        {
+            ani.SetBool("idle", true);
+        }
+        else
+        {
+            ani.SetBool("idle", false);
+        }
     }
 
     void locate()
@@ -38,18 +48,21 @@ public class EnemyMove : MonoBehaviour
     }
     void Attack()
     {
-        LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
-        Debug.DrawRay(transform.position, Vector2.right * vec, Color.red, 1.5f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 1.5f, layer);
+        if (isattack == true)
+        {
+            LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
+            Debug.DrawRay(transform.position, Vector2.right * vec, Color.red, 1.5f);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 1.5f, layer);
 
-        if (hit.collider != null)
-        {
-            StartCoroutine(NomalAttack());
-        }
-        else
-        {
-            speed = 2f;
-            rigid.linearVelocity = vec.normalized * speed;
+            if (hit.collider != null)
+            {
+                StartCoroutine(NomalAttack());
+            }
+            else
+            {
+                speed = 2f;
+                rigid.linearVelocity = vec.normalized * speed;
+            }
         }
     }
 
@@ -59,11 +72,19 @@ public class EnemyMove : MonoBehaviour
         rigid.linearVelocity = Vector2.zero;
         ani.SetBool("attack", true);
         attackprefab.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(jujuj);
         speed = 2f;
         rigid.linearVelocity = vec.normalized * speed;
         ani.SetBool("attack", false);
         attackprefab.SetActive(false);
+        StartCoroutine(Cooltime());
+    }
+
+    private IEnumerator Cooltime()
+    {
+        isattack = false;
+        yield return new WaitForSeconds(2f);
+        isattack = true;
     }
 }
 

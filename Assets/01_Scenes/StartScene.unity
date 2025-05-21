@@ -955,6 +955,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &649169580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649169582}
+  - component: {fileID: 649169581}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &649169581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649169580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc438ca1558102949a7da9bd3bd6ff9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 8300000, guid: d4eb3860e207c4844bb6ad3af3262894, type: 3}
+--- !u!4 &649169582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649169580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1355.0449, y: 424.01666, z: -5.769465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &672041022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1522,7 @@ GameObject:
   - component: {fileID: 992826426}
   - component: {fileID: 992826425}
   - component: {fileID: 992826424}
+  - component: {fileID: 992826427}
   m_Layer: 5
   m_Name: CreditButton
   m_TagString: Untagged
@@ -1586,6 +1632,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992826422}
   m_CullTransparentMesh: 1
+--- !u!114 &992826427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992826422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc438ca1558102949a7da9bd3bd6ff9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 8300000, guid: d4eb3860e207c4844bb6ad3af3262894, type: 3}
 --- !u!1 &1335062852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,3 +2949,4 @@ SceneRoots:
   - {fileID: 1877200837}
   - {fileID: 1248420339696015806}
   - {fileID: 4206378995468098688}
+  - {fileID: 649169582}
