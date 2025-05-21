@@ -12,7 +12,7 @@ public class TutoManager : MonoBehaviour
 
     [Header("튜토리얼 타겟")]
     [SerializeField] private GameObject tutorialDummy;
-    [SerializeField] private Transform dummySpawnPoint;
+    [SerializeField] private GameObject tutorialTarget; 
 
     [Header("UI 설정")]
     [SerializeField] private TMP_FontAsset tutorialFont;
@@ -32,6 +32,8 @@ public class TutoManager : MonoBehaviour
     private Image spaceKeyImage;
     private Image shiftKeyImage;
     private Image attackKeyImage;
+    private Image qKeyImage;
+    private Image eKeyImage;
 
     private enum TutorialState
     {
@@ -39,7 +41,9 @@ public class TutoManager : MonoBehaviour
         Jump,
         MovementComplete,
         Dash,
-        Combat,
+        WeaponIntro,
+        SwordTraining,
+        GunTraining,
         Complete
     }
 
@@ -52,8 +56,11 @@ public class TutoManager : MonoBehaviour
     private PlayerM player;
     private GameObject spawnedDummy;
     private bool isTransitioning;
-    private int hitCount = 0;
-    private const int requiredHits = 10;
+    private int swordHitCount = 0;
+    private int gunHitCount = 0;
+    private const int requiredSwordHits = 5;
+    private const int requiredGunHits = 5;
+    private bool isUsingGun = false;
 
     private readonly Vector2 referenceResolution = new Vector2(1920, 1080);
 
@@ -113,7 +120,7 @@ public class TutoManager : MonoBehaviour
         textRect.anchorMin = Vector2.zero;
         textRect.anchorMax = Vector2.one;
         textRect.pivot = new Vector2(0.5f, 0.5f);
-        textRect.sizeDelta = new Vector2(-40, -20); // 패딩
+        textRect.sizeDelta = new Vector2(-40, -20); 
         textRect.anchoredPosition = Vector2.zero;
 
         tutorialText = textObj.AddComponent<TextMeshProUGUI>();
@@ -132,7 +139,7 @@ public class TutoManager : MonoBehaviour
         panelRect.anchorMin = new Vector2(0.5f, 0.2f);
         panelRect.anchorMax = new Vector2(0.5f, 0.2f);
         panelRect.pivot = new Vector2(0.5f, 0.5f);
-        panelRect.sizeDelta = new Vector2(600, 100);
+        panelRect.sizeDelta = new Vector2(700, 100);
         panelRect.anchoredPosition = Vector2.zero;
 
         HorizontalLayoutGroup layout = keyPromptPanel.AddComponent<HorizontalLayoutGroup>();
@@ -149,6 +156,8 @@ public class TutoManager : MonoBehaviour
         spaceKeyImage = CreateKeyImage(keyPromptPanel.transform, "SpaceKeyImage", "Space");
         shiftKeyImage = CreateKeyImage(keyPromptPanel.transform, "ShiftKeyImage", "Shift");
         attackKeyImage = CreateKeyImage(keyPromptPanel.transform, "AttackKeyImage", "LMB");
+        qKeyImage = CreateKeyImage(keyPromptPanel.transform, "QKeyImage", "Q");
+        eKeyImage = CreateKeyImage(keyPromptPanel.transform, "EKeyImage", "E");
 
         SetKeyPrompts();
     }
@@ -199,8 +208,13 @@ public class TutoManager : MonoBehaviour
             case TutorialState.Dash:
                 CheckDashInput();
                 break;
-            case TutorialState.Combat:
-                CheckCombatInput();
+            case TutorialState.SwordTraining:
+                
+                CheckWeaponSwitch();
+                break;
+            case TutorialState.GunTraining:
+                
+                CheckWeaponSwitch();
                 break;
         }
     }
@@ -280,29 +294,34 @@ public class TutoManager : MonoBehaviour
         {
             shiftPressedOnce = true;
             SetImageAlpha(shiftKeyImage, 0.5f);
-            StartTransition(TransitionToCombatTutorial);
+            StartTransition(TransitionToWeaponIntro);
         }
     }
 
-    private IEnumerator TransitionToCombatTutorial()
+    private IEnumerator TransitionToWeaponIntro()
     {
         isTransitioning = true;
-        currentState = TutorialState.Combat;
-        tutorialText.text = "잘했어요! 이제 실전 연습을 해봅시다.";
+        tutorialText.text = "잘했어요! 이제 무기 사용법을 배워볼까요?";
         yield return new WaitForSeconds(tutorialStepDelay);
 
+        currentState = TutorialState.WeaponIntro;
+        tutorialText.text = "현재 칼을 들고 있습니다. 좌클릭으로 허수아비 좀비를 5번 공격해보세요.";
+
         SpawnDummy();
-        tutorialText.text = "좌클릭으로 허수아비 좀비를 10번 공격해보세요. (현재: 0/10)";
         SetKeyPrompts(attack: true);
+
+        currentState = TutorialState.SwordTraining;
         isTransitioning = false;
     }
 
     private void SpawnDummy()
     {
-        if (tutorialDummy == null || dummySpawnPoint == null) return;
+        if (tutorialDummy == null || tutorialTarget == null) return;
 
-        spawnedDummy = Instantiate(tutorialDummy, dummySpawnPoint.position, Quaternion.identity);
-        // 더미 이벤트 호출 리스너 추가
+        
+        spawnedDummy = Instantiate(tutorialDummy, tutorialTarget.transform.position, Quaternion.identity);
+
+        
         var enemy = spawnedDummy.GetComponent<TutoEnemy>();
         if (enemy != null)
         {
@@ -312,20 +331,65 @@ public class TutoManager : MonoBehaviour
 
     private void OnDummyHit()
     {
-        hitCount++;
-        tutorialText.text = $"좌클릭으로 허수아비 좀비를 10번 공격해보세요. (현재: {hitCount}/10)" +
-            $"허수아비 좀비 >>";
-
-        if (hitCount >= requiredHits && !isTransitioning)
+        if (currentState == TutorialState.SwordTraining && !isUsingGun)
         {
-            StartTransition(CompleteTutorial);
+            swordHitCount++;
+            tutorialText.text = $"좌클릭으로 허수아비 좀비를 칼로 5번 공격해보세요. (현재: {swordHitCount}/5)";
+
+            if (swordHitCount >= requiredSwordHits && !isTransitioning)
+            {
+                StartTransition(TransitionToGunTutorial);
+            }
+        }
+        else if (currentState == TutorialState.GunTraining && isUsingGun)
+        {
+            gunHitCount++;
+            tutorialText.text = $"좌클릭으로 허수아비 좀비를 총으로 5번 공격해보세요. (현재: {gunHitCount}/5)";
+
+            if (gunHitCount >= requiredGunHits && !isTransitioning)
+            {
+                StartTransition(CompleteTutorial);
+            }
         }
     }
 
-    private void CheckCombatInput()
+    private void CheckWeaponSwitch()
     {
-        // 좌 클릭 감지는 유지하되 실제 히트 카운트는 OnDummyHit에서 처리됩니다.
-        // 여기서는 따로 처리할 내용이 없습니다.
+        
+        if (Input.GetKeyDown(KeyCode.Q) && !isUsingGun)
+        {
+            isUsingGun = true;
+            if (currentState == TutorialState.SwordTraining && swordHitCount >= requiredSwordHits)
+            {
+                tutorialText.text = "좋아요! 이제 Q키를 눌러 총으로 전환했습니다. 좌클릭으로 총 공격을 해보세요.";
+            }
+        }
+
+        
+        if (Input.GetKeyDown(KeyCode.E) && isUsingGun)
+        {
+            isUsingGun = false;
+            if (currentState == TutorialState.GunTraining)
+            {
+                tutorialText.text = "E키를 눌러 다시 칼로 전환했습니다.";
+            }
+        }
+    }
+
+    private IEnumerator TransitionToGunTutorial()
+    {
+        isTransitioning = true;
+        tutorialText.text = "좋아요! 칼 공격을 마스터했습니다.";
+        yield return new WaitForSeconds(tutorialStepDelay);
+
+        tutorialText.text = "이제 Q 키를 눌러 총으로 전환해보세요.";
+        SetKeyPrompts(q: true);
+        yield return new WaitForSeconds(tutorialStepDelay);
+
+        currentState = TutorialState.GunTraining;
+        tutorialText.text = $"좌클릭으로 허수아비 좀비를 총으로 5번 공격해보세요. (현재: {gunHitCount}/5)";
+        SetKeyPrompts(attack: true, q: true, e: true);
+        isTransitioning = false;
     }
 
     private IEnumerator CompleteTutorial()
@@ -333,7 +397,7 @@ public class TutoManager : MonoBehaviour
         isTransitioning = true;
         currentState = TutorialState.Complete;
 
-        // 더미 객체 제거 전에 이벤트 제거
+        
         if (spawnedDummy != null)
         {
             var enemy = spawnedDummy.GetComponent<TutoEnemy>();
@@ -382,19 +446,23 @@ public class TutoManager : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
-    private void SetKeyPrompts(bool a = false, bool d = false, bool space = false, bool shift = false, bool attack = false)
+    private void SetKeyPrompts(bool a = false, bool d = false, bool space = false, bool shift = false, bool attack = false, bool q = false, bool e = false)
     {
         aKeyImage.gameObject.SetActive(a);
         dKeyImage.gameObject.SetActive(d);
         spaceKeyImage.gameObject.SetActive(space);
         shiftKeyImage.gameObject.SetActive(shift);
         attackKeyImage.gameObject.SetActive(attack);
+        qKeyImage.gameObject.SetActive(q);
+        eKeyImage.gameObject.SetActive(e);
 
         if (a) SetImageAlpha(aKeyImage, 1f);
         if (d) SetImageAlpha(dKeyImage, 1f);
         if (space) SetImageAlpha(spaceKeyImage, 1f);
         if (shift) SetImageAlpha(shiftKeyImage, 1f);
         if (attack) SetImageAlpha(attackKeyImage, 1f);
+        if (q) SetImageAlpha(qKeyImage, 1f);
+        if (e) SetImageAlpha(eKeyImage, 1f);
     }
 
     private void SetImageAlpha(Image img, float alpha)
@@ -415,7 +483,7 @@ public class TutoManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        // 이벤트 리스너 제거
+        
         if (spawnedDummy != null)
         {
             var enemy = spawnedDummy.GetComponent<TutoEnemy>();
