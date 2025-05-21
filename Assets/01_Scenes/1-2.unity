@@ -1893,6 +1893,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 5697438757700059195}
+  gun: {fileID: 0}
 --- !u!114 &830373398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,6 +1908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 1971161583}
   sword: {fileID: 5697438757700059195}
+  uIManager: {fileID: 0}
 --- !u!1 &834767526
 GameObject:
   m_ObjectHideFlags: 0

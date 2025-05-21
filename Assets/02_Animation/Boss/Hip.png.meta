@@ -1,31 +1,34 @@
 fileFormatVersion: 2
-guid: 9ac0365c8f1bfd5438afe3cb8fe727a5
+guid: 51154ae6a8d917945945817faa4f1dd9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2698481814978911966
-    second: adad_0
+      213: -803620031224550872
+    second: Hip_0
   - first:
-      213: 8748184789132743210
-    second: adad_1
+      213: 2098234537865996098
+    second: Hip_1
   - first:
-      213: -6536374889359487421
-    second: adad_2
+      213: -6082226910251914029
+    second: Hip_2
   - first:
-      213: -5141887152592910484
-    second: adad_3
+      213: -7765481112917833401
+    second: Hip_3
   - first:
-      213: 1947595821040796091
-    second: adad_4
+      213: 4718510328309759169
+    second: Hip_4
   - first:
-      213: 6971454609182613423
-    second: adad_5
+      213: -8079389820413934607
+    second: Hip_5
   - first:
-      213: 4964592182018816566
-    second: adad_6
+      213: -5264373496425851017
+    second: Hip_6
   - first:
-      213: 5809768436841643191
-    second: adad_7
+      213: 2914061144053400645
+    second: Hip_7
+  - first:
+      213: -8931942813130126125
+    second: Hip_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -147,177 +150,199 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: adad_0
+      name: Hip_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 2
         y: 0
-        width: 89
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 28
+        height: 30
+      alignment: 9
+      pivot: {x: 0.49999973, y: 0.5388399}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 221a45126111d8ad0800000000000000
-      internalID: -2698481814978911966
+      spriteID: 82ae870e6d7f8d4f0800000000000000
+      internalID: -803620031224550872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adad_1
+      name: Hip_1
       rect:
         serializedVersion: 2
-        x: 115
+        x: 32
         y: 0
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 28
+        height: 31
+      alignment: 9
+      pivot: {x: 0.53404725, y: 0.5307529}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a229bb147bbc76970800000000000000
-      internalID: 8748184789132743210
+      spriteID: 24765fcf13d6e1d10800000000000000
+      internalID: 2098234537865996098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adad_2
+      name: Hip_2
       rect:
         serializedVersion: 2
-        x: 147
+        x: 65
         y: 0
-        width: 16
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 31
+        height: 30
+      alignment: 9
+      pivot: {x: 0.53075284, y: 0.5247162}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34ec1f85ba12a45a0800000000000000
-      internalID: -6536374889359487421
+      spriteID: 3dcec13a9d6979ba0800000000000000
+      internalID: -6082226910251914029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adad_3
+      name: Hip_3
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 0
+        width: 27
+        height: 30
+      alignment: 9
+      pivot: {x: 0.47646022, y: 0.53177804}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 749078232187b3490800000000000000
+      internalID: -7765481112917833401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hip_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 24
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4028988, y: 0.5176543}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc3ae3d4248b7140800000000000000
+      internalID: 4718510328309759169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hip_5
       rect:
         serializedVersion: 2
         x: 179
         y: 0
-        width: 18
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.49558577, y: 0.4985648}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c670e8aa0e854a8b0800000000000000
-      internalID: -5141887152592910484
+      spriteID: 1f30258c3cd30ef80800000000000000
+      internalID: -8079389820413934607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adad_4
+      name: Hip_6
       rect:
         serializedVersion: 2
-        x: 204
+        x: 210
         y: 0
-        width: 33
-        height: 24
+        width: 20
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb10c279410470b10800000000000000
-      internalID: 1947595821040796091
+      spriteID: 7775e84623031f6b0800000000000000
+      internalID: -5264373496425851017
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adad_5
+      name: Hip_7
       rect:
         serializedVersion: 2
-        x: 237
+        x: 235
         y: 0
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 31
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4999995, y: 0.54041153}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fafd61cd7059fb060800000000000000
-      internalID: 6971454609182613423
+      spriteID: 5444211db23d07820800000000000000
+      internalID: 2914061144053400645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adad_6
+      name: Hip_8
       rect:
         serializedVersion: 2
-        x: 255
+        x: 272
         y: 0
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 32
+        height: 22
+      alignment: 9
+      pivot: {x: 0.4962101, y: 0.7259371}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 63ab9e73946c5e440800000000000000
-      internalID: 4964592182018816566
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: adad_7
-      rect:
-        serializedVersion: 2
-        x: 257
-        y: 0
-        width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7bcf831ac9170a050800000000000000
-      internalID: 5809768436841643191
+      spriteID: 3dc864db55d5b0480800000000000000
+      internalID: -8931942813130126125
       vertices: []
       indices: 
       edges: []
@@ -326,7 +351,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 90a6a13b5c76a76478cc922da0df2628
     internalID: 0
     vertices: []
     indices: 
@@ -336,14 +361,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      adad_0: -2698481814978911966
-      adad_1: 8748184789132743210
-      adad_2: -6536374889359487421
-      adad_3: -5141887152592910484
-      adad_4: 1947595821040796091
-      adad_5: 6971454609182613423
-      adad_6: 4964592182018816566
-      adad_7: 5809768436841643191
+      Hip_0: -803620031224550872
+      Hip_1: 2098234537865996098
+      Hip_2: -6082226910251914029
+      Hip_3: -7765481112917833401
+      Hip_4: 4718510328309759169
+      Hip_5: -8079389820413934607
+      Hip_6: -5264373496425851017
+      Hip_7: 2914061144053400645
+      Hip_8: -8931942813130126125
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
