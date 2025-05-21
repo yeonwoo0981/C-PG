@@ -11,7 +11,6 @@ public class ZonZombie : MonoBehaviour
     private GameObject attackprefab1;
 
     private Animator ani;
-    private float range;
     private bool isattack = true;
     private void Awake()
     {
@@ -51,8 +50,8 @@ public class ZonZombie : MonoBehaviour
         if (isattack == true)
         {
             LayerMask layer = LayerMask.GetMask("PlayerLevelUp");
-            Debug.DrawRay(transform.position, Vector2.right * vec, Color.yellow, 3f);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 3f, layer);
+            Debug.DrawRay(transform.position, Vector2.right * vec, Color.yellow, 5f);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * vec, 5f, layer);
 
             if (hit.collider != null)
             {
@@ -71,11 +70,12 @@ public class ZonZombie : MonoBehaviour
         speed = 0f;
         rigid.linearVelocity = Vector2.zero;
         ani.SetBool("attack", true);
+        yield return new WaitForSeconds(0.3f);
         if (attackprefab1 == null)
         {
             attackprefab1 = Instantiate(attackprefab, transform.position, Quaternion.identity);
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         ani.SetBool("attack", false);
         StartCoroutine(Cooltime());
     }
@@ -83,7 +83,7 @@ public class ZonZombie : MonoBehaviour
     private IEnumerator Cooltime()
     {
         isattack = false;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         isattack = true;
     }
 }
