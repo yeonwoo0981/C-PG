@@ -4207,7 +4207,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineMaterial: {fileID: 2100000, guid: 1486fd919c9da7441865a2bacb6aea78, type: 2}
   enemyHP: {fileID: 0}
+  player: {fileID: 0}
   coolTime: 0
+  rb: {fileID: 0}
+  moveDir: {x: 0, y: 0}
+  sword: {fileID: 0}
+  rayLength: 10
+  playerM: {fileID: 0}
 --- !u!1 &1982282439
 GameObject:
   m_ObjectHideFlags: 0
