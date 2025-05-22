@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class GunOffset : MonoBehaviour
 {
@@ -28,9 +29,31 @@ public class GunOffset : MonoBehaviour
                 sword.SetActive(false);
                 DrawLineToMouse();
                 coolTime = 0;
+                RayCastMouse();
             }
         }
         transform.position = player.transform.position + offset;
+    }
+
+    private void RayCastMouse()
+    {
+        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 origin = transform.position;
+        Vector2 direction = (Vector2)(worldMousePos - transform.position);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction, 100f);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                Debug.DrawLine(origin, hit.point, Color.red);
+                enemyHP.MinusHP();
+                break;
+            }
+        }
+
+        // 디버그용 선
+        Debug.DrawRay(origin, direction * 100f, Color.green, 1f);
     }
 
     void DrawLineToMouse()
