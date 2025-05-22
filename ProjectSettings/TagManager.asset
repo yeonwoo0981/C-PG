@@ -11,6 +11,7 @@ TagManager:
   - PanelUI
   - EnemyAttack
   - PlayerAttack
+  - dummy
   layers:
   - Default
   - TransparentFX
