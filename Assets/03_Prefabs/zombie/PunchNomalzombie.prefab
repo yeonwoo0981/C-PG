@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6514291808406940880}
   - component: {fileID: 3874794745180325772}
   - component: {fileID: 7912621786190501202}
-  - component: {fileID: 6416864958784494232}
   - component: {fileID: 1301740141812196127}
   - component: {fileID: 8245825651121675547}
   - component: {fileID: 2697182679184444404}
+  - component: {fileID: 8469816215726858335}
   m_Layer: 6
   m_Name: PunchNomalzombie
   m_TagString: Enemy
@@ -120,28 +120,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!95 &6416864958784494232
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919543712882428175}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 87f70b0bed864e34a90a12e0f43ac4e7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &1301740141812196127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -216,6 +194,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_HP: 50
+--- !u!95 &8469816215726858335
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919543712882428175}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87f70b0bed864e34a90a12e0f43ac4e7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &827558299696350893
 PrefabInstance:
   m_ObjectHideFlags: 0

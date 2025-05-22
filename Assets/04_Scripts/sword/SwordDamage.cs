@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SwordDamage : MonoBehaviour
 {
@@ -15,12 +14,12 @@ public class SwordDamage : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(moveDir.x > 0)
+        if (moveDir.x > 0)
         {
             transform.position = player.position + offset;
         }
 
-        else if(moveDir.x < 0)
+        else if (moveDir.x < 0)
         {
             transform.position = player.position - offset;
         }

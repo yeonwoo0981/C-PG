@@ -1,0 +1,313 @@
+fileFormatVersion: 2
+guid: 9ac0365c8f1bfd5438afe3cb8fe727a5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2698481814978911966
+    second: adad_0
+  - first:
+      213: 8748184789132743210
+    second: adad_1
+  - first:
+      213: -6536374889359487421
+    second: adad_2
+  - first:
+      213: -5141887152592910484
+    second: adad_3
+  - first:
+      213: 1947595821040796091
+    second: adad_4
+  - first:
+      213: 6971454609182613423
+    second: adad_5
+  - first:
+      213: 4964592182018816566
+    second: adad_6
+  - first:
+      213: 5809768436841643191
+    second: adad_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: adad_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 0
+        width: 25
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -11, y: -0.5}
+        - {x: -12, y: 1.5}
+        - {x: -18, y: 1.5}
+        - {x: -18, y: -1.5}
+        - {x: -11, y: -1.5}
+      - - {x: 18, y: 1.5}
+        - {x: 10, y: 1.5}
+        - {x: 10, y: 0.5}
+        - {x: 12, y: -1.5}
+        - {x: 18, y: -1.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221a45126111d8ad0800000000000000
+      internalID: -2698481814978911966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adad_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 29
+        height: 8
+      alignment: 9
+      pivot: {x: 0.50000024, y: 0.181074}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 5, y: -2}
+        - {x: 5, y: 4}
+        - {x: 1, y: 4}
+        - {x: -5, y: 0}
+        - {x: -5, y: -4}
+        - {x: 3, y: -4}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a229bb147bbc76970800000000000000
+      internalID: 8748184789132743210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adad_3
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 0
+        width: 48
+        height: 11
+      alignment: 9
+      pivot: {x: 0.49687323, y: 0.13843681}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 8, y: -4.5}
+        - {x: 8, y: 5.5}
+        - {x: 1, y: 5.5}
+        - {x: -8, y: -2.5}
+        - {x: -8, y: -5.5}
+        - {x: 6, y: -5.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c670e8aa0e854a8b0800000000000000
+      internalID: -5141887152592910484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adad_4
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 78
+        height: 25
+      alignment: 9
+      pivot: {x: 0.49711373, y: 0.07676621}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 15.5, y: -5.5}
+        - {x: 0.5, y: 11.5}
+        - {x: -15.5, y: 11.5}
+        - {x: -15.5, y: 2.5}
+        - {x: -7.5, y: -11.5}
+        - {x: 15.5, y: -11.5}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb10c279410470b10800000000000000
+      internalID: 1947595821040796091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: adad_-1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 5
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0143666645b83c84b846a221bca12b6c
+      internalID: -6536374889359487421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1704cb45cf08f40459f3f7a7cc44e076
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      adad_-1: -6536374889359487421
+      adad_0: -2698481814978911966
+      adad_1: 8748184789132743210
+      adad_3: -5141887152592910484
+      adad_4: 1947595821040796091
+      adad_5: 6971454609182613423
+      adad_6: 4964592182018816566
+      adad_7: 5809768436841643191
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

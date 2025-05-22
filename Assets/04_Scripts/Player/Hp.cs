@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Hp : MonoBehaviour
@@ -27,6 +28,7 @@ public class Hp : MonoBehaviour
     private float currentAlpha = 0f;
     private bool isFading = false;
     private Coroutine fadeCoroutine;
+    private Animator animator;
 
     [Header("Game Over Buttons")]
     [SerializeField] private Button restartBtn;
@@ -39,6 +41,7 @@ public class Hp : MonoBehaviour
     [System.Obsolete]
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.hpController = this;
@@ -76,7 +79,7 @@ public class Hp : MonoBehaviour
             currentAlpha = 0f;
         }
     }
-
+    
     private void Start()
     {
         if (PlayerManager.Instance != null)
@@ -121,13 +124,10 @@ public class Hp : MonoBehaviour
             _curHealth -= 5f;
             if (_curHealth < 0) _curHealth = 0;
         }
-
         Debug.Log($"플레이어 체력: {_curHealth}");
         UpdateHpText();
 
-        
         ShowDamageVignette();
-
         
         if (_curHealth <= 0 && !isDead)
         {
@@ -331,7 +331,18 @@ public class Hp : MonoBehaviour
                 Damage();
                 StartCoroutine(AttackedCooltime());
             }
+            else if (collision.CompareTag("slow"))
+            {
+                StartCoroutine(Slow());
+            }
         }
+    }
+
+    private IEnumerator Slow()
+    {
+        float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 0f;
+        yield return new WaitForSeconds(2f);
+        moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
     }
 
     private IEnumerator AttackedCooltime()
@@ -344,6 +355,7 @@ public class Hp : MonoBehaviour
     public void ResetHP()
     {
         isDead = false;
+        animator.SetBool("isDead", false);
         if (PlayerManager.Instance != null)
         {
             PlayerManager.Instance.currentHp = PlayerManager.Instance.maxHp;

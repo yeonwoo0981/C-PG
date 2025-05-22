@@ -111,6 +111,28 @@ public class PlayerM : MonoBehaviour
         }
     }
 
+    public void P_Gun()
+    {
+        animator.SetBool("isGun", true);
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isRunning", false);
+    }
+    public void P_Sword()
+    {
+        animator.SetBool("isSword", true);
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isRunning", false);
+    }
+    public void P_NoGun()
+    {
+        animator.SetBool("isGun", false);
+    }
+    public void P_NoSword()
+    {
+        animator.SetBool("isSword", false);
+    }
+
+
 
     public bool isGround
     {

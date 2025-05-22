@@ -31,6 +31,7 @@ public class ZonZombieAttack : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     void locate()
