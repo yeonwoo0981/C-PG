@@ -5,15 +5,19 @@ public class Sword : MonoBehaviour
 {
     public GameObject sword;
     public GameObject gun;
+    private Animator animator;
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         sword.SetActive(false);
     }
     private void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Input.GetMouseButtonDown(0) && !gun.activeSelf)
         {
             sword.SetActive(true);
+            animator.SetBool("isSword", true);
+            animator.SetBool("isGun", false);
             StartCoroutine(SwordTrue());
         }
     }
@@ -22,5 +26,6 @@ public class Sword : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         sword.SetActive(false);
+        animator.SetBool("isSword",false);
     }
 }

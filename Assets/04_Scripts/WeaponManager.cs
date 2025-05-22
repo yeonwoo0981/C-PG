@@ -6,8 +6,10 @@ public class WeaponManager : MonoBehaviour
     public GameObject gun;
     public GameObject sword;
     [SerializeField] private UIManager uIManager;
+    private Animator animator;
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         gun.SetActive(false);
         sword.SetActive(true);
     }

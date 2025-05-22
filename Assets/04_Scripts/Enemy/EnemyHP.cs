@@ -17,7 +17,6 @@ public class EnemyHP : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerAttack") && !E_isDead)
         {
             MinusHP();
-
             if (e_HP <= 0)
             {
                 E_isDead = true;
