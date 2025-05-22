@@ -62,8 +62,6 @@ public class GunOffset : MonoBehaviour
 
     IEnumerator UpdateLineWidthAfterDelay(LineRenderer lr, float delay, float newWidth)
     {
-
-        float moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 0f;
         animator.SetBool("isGun", true);
         yield return new WaitForSeconds(delay);
         if (lr != null)
@@ -72,7 +70,6 @@ public class GunOffset : MonoBehaviour
             lr.endWidth = newWidth;
         }
         animator.SetBool("isGun", false);
-        moveSpeed = PlayerManager.Instance != null ? PlayerManager.Instance.moveSpeed : 5f;
     }
 }
 
