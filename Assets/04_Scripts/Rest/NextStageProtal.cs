@@ -29,14 +29,14 @@ public class NextStagePortal : MonoBehaviour
             return;
         }
 
-<<<<<<< HEAD
+
         if (transitionPanel == null)
         {
             return;
         }
-=======
+
         
->>>>>>> 6a460167cc0637a7733256beb6addaa780253a63
+
 
         panelRectTransform = transitionPanel.GetComponent<RectTransform>();
 
