@@ -12,6 +12,7 @@ TagManager:
   - EnemyAttack
   - PlayerAttack
   - dummy
+  - slow
   layers:
   - Default
   - TransparentFX

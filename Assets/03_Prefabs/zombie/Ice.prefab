@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7415591773764236417}
   - component: {fileID: 7008213684265679559}
   m_Layer: 0
-  m_Name: ZonZombieAttack
-  m_TagString: EnemyAttack
+  m_Name: Ice
+  m_TagString: slow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 6740019992572339318, guid: e456595c4af56c6458454c2a8de75f38, type: 3}
+  m_Sprite: {fileID: -855298285791758126, guid: 529c78228ed104f42904234c17437830, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -187,7 +187,7 @@ Animator:
   m_GameObject: {fileID: 5938907744795804331}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 54c0561a1c3c79f4895c8bc756c00579, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4a24d87bc33403c4ebbb1388378b11d4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
